@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import Welcome from "./welcome";
 
-ReactDOM.render(
-    <HelloWorld />,
-    document.querySelector('main')
-);
+let thingToRender;
 
-function HelloWorld() {
-    return (
-        <div>Hello, World!</div>
-    );
+if (location.pathname == "/welcome") {
+    thingToRender = <Welcome />;
+} else {
+    thingToRender = <img src="mylogo.png" />;
 }
+
+ReactDOM.render(thingToRender, document.querySelector("main"));
