@@ -4,14 +4,11 @@ const compression = require("compression");
 const bodyParser = require("body-parser");
 const ca = require("chalk-animation");
 const cookieSession = require("cookie-session");
-const express = require("express");
 const db = require("./db");
 const multer = require("multer");
 const path = require("path");
 const uidSafe = require("uid-safe");
-const app = express();
-
-app.use(compression());
+const csrf = app.use(compression());
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, __dirname + "/uploads");
@@ -31,7 +28,13 @@ const uploader = multer({
 });
 
 app.use(bodyParser.json());
-app.use(express.static("./public"));
+app.use(
+    cookieSession({
+        secret: `I'm always angry.` /* nur irgendein text */,
+        maxAge: 1000 * 60 * 60 * 24 * 14 /* two weeks */
+    })
+);
+app.use.app.use(express.static("./public"));
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -44,14 +47,32 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-app.use(
-    cookieSession({
-        secret: `I'm always angry.` /* nur irgendein text */,
-        maxAge: 1000 * 60 * 60 * 24 * 14 /* two weeks */
-    })
-);
+// ROUTES    ######################################################
+app.post("register", function(first, last, email, password) {
+    bcrypt
+        .hash(req.body.password)
+        .then(hashedPass => {
+            return db.registerUser(
+                req.body.first,
+                req.body.last,
+                req.body.email,
+                reg.body.hashedPass
+            );
+        })
+        .then(dbData => {
+            (req.session.userId = dbData.rows[0].id),
+                (req.session.name = `${dbData.rows[0].first} ${
+                    dbData.rows[0].last
+                }`);
+            res.redirect("/");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+//----------------------------------------
 
-//######################################################
+//---------------------------------------------------
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
         res.redirect("/");

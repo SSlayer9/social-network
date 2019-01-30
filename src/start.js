@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
 
-let thingToRender;
+let component;
 
 if (location.pathname == "/welcome") {
-    thingToRender = <Welcome />;
+    component = <Welcome />;
 } else {
-    thingToRender = <img src="mylogo.png" />;
+    component = <img src="/assets/logo.png" />;
 }
 
-ReactDOM.render(thingToRender, document.querySelector("main"));
+ReactDOM.render(component, document.querySelector("main"));
