@@ -86,7 +86,9 @@ app.post("/welcome/register", function(req, res) {
                     dbData.rows[0].last
                 }`;
                 console.log("req.session :", req.session);
-                res.redirect("/");
+                res.json({
+                    success: true
+                });
             })
             .catch(err => {
                 console.log(err);
@@ -94,9 +96,10 @@ app.post("/welcome/register", function(req, res) {
     }
 });
 
-//----------------------------------------
+// app.get('/welcome/login', (req,res) {
 
-//---------------------------------------------------
+// }),
+
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
         res.redirect("/");

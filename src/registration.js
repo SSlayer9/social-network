@@ -6,6 +6,7 @@ export default class Registration extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        // we bind to make sure handleChange Function and submit Function have acess to components attributs like this.props and this.state
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
     }
@@ -14,13 +15,13 @@ export default class Registration extends React.Component {
         this[e.target.name] = e.target.value;
     }
     submit() {
-        // console.log("this:", this);
+        console.log("this is in axios registration:", this);
         axios
             .post("/welcome/register", {
                 first: this.first,
                 last: this.last,
                 email: this.email,
-                password: this.pass
+                password: this.password
             })
             .then(({ data }) => {
                 console.log("Data:", data);
@@ -36,7 +37,7 @@ export default class Registration extends React.Component {
     render() {
         console.log("I am rendering");
         return (
-            <div>
+            <div className=" form register-form">
                 {this.state.error && (
                     <div className="error">Oops! Something went wrong!</div>
                 )}
@@ -51,7 +52,11 @@ export default class Registration extends React.Component {
                 <input name="email" id="email" onChange={this.handleChange} />
 
                 <label htmlFor="password">Password</label>
-                <input name="pass" id="password" onChange={this.handleChange} />
+                <input
+                    name="password"
+                    id="password"
+                    onChange={this.handleChange}
+                />
 
                 <button onClick={this.submit}>Register</button>
                 <Link to="/login">Log In</Link>
