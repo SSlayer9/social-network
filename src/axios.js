@@ -6,4 +6,4 @@ var instance = axios.create({
 });
 
 export default instance;
-// when I then import this is does not have to have the same name (instance). I this case in registration.js I import axios from './axios'
+// when I then import this somewhere else is does not have to have the same name (instance). I this case in registration.js I will do: import axios from './axios'

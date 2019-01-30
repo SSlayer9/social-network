@@ -8,7 +8,10 @@ const db = require("./db");
 const multer = require("multer");
 const path = require("path");
 const uidSafe = require("uid-safe");
-const csrf = app.use(compression());
+const csurf = require("csurf");
+const bcrypt = require("./bcrypt.js");
+
+app.use(compression());
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, __dirname + "/uploads");
@@ -34,7 +37,12 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 14 /* two weeks */
     })
 );
-app.use.app.use(express.static("./public"));
+app.use(express.static("./public"));
+app.use(csurf());
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -48,28 +56,44 @@ if (process.env.NODE_ENV != "production") {
 }
 
 // ROUTES    ######################################################
-app.post("register", function(first, last, email, password) {
-    bcrypt
-        .hash(req.body.password)
-        .then(hashedPass => {
-            return db.registerUser(
-                req.body.first,
-                req.body.last,
-                req.body.email,
-                reg.body.hashedPass
-            );
-        })
-        .then(dbData => {
-            (req.session.userId = dbData.rows[0].id),
-                (req.session.name = `${dbData.rows[0].first} ${
-                    dbData.rows[0].last
-                }`);
-            res.redirect("/");
-        })
-        .catch(err => {
-            console.log(err);
+app.post("/welcome/register", function(req, res) {
+    console.log("REq.body post register", req.body);
+    if (
+        !req.body.first ||
+        !req.body.last ||
+        !req.body.email ||
+        !req.body.password
+    ) {
+        res.json({
+            success: false
         });
+    } else {
+        bcrypt
+            .hash(req.body.password)
+            .then(hashedPass => {
+                return db.registerUser(
+                    req.body.first,
+                    req.body.last,
+                    req.body.email,
+                    hashedPass
+                );
+            })
+            .then(dbData => {
+                console.log("User really has been added to Database");
+                console.log("Returnend dbData: ", dbData.rows[0]);
+                req.session.userId = dbData.rows[0].id;
+                req.session.name = `${dbData.rows[0].first} ${
+                    dbData.rows[0].last
+                }`;
+                console.log("req.session :", req.session);
+                res.redirect("/");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 });
+
 //----------------------------------------
 
 //---------------------------------------------------

@@ -10,17 +10,22 @@ export default class Registration extends React.Component {
         this.submit = this.submit.bind(this);
     }
     handleChange(e) {
+        //this grabs the value of input and assigns it to this
         this[e.target.name] = e.target.value;
     }
     submit() {
+        // console.log("this:", this);
         axios
-            .post("/register", {
+            .post("/welcome/register", {
                 first: this.first,
-                email: this.email
+                last: this.last,
+                email: this.email,
+                password: this.pass
             })
             .then(({ data }) => {
+                console.log("Data:", data);
                 if (data.success) {
-                    location.replace("/");
+                    location.replace("/"); //this is redirecting to homepage,when logge in
                 } else {
                     this.setState({
                         error: true
@@ -35,15 +40,20 @@ export default class Registration extends React.Component {
                 {this.state.error && (
                     <div className="error">Oops! Something went wrong!</div>
                 )}
-                <label for="first">First name</label>
+
+                <label htmlFor="first">First name</label>
                 <input name="first" id="first" onChange={this.handleChange} />
-                <label for="last">Last Name</label>
+
+                <label htmlFor="last">Last Name</label>
                 <input name="last" id="last" onChange={this.handleChange} />
-                <label for="email">Your Best Email</label>
+
+                <label htmlFor="email">Your Best Email</label>
                 <input name="email" id="email" onChange={this.handleChange} />
-                <label for="password">Password</label>
+
+                <label htmlFor="password">Password</label>
                 <input name="pass" id="password" onChange={this.handleChange} />
-                <button onClick>Register</button>
+
+                <button onClick={this.submit}>Register</button>
                 <Link to="/login">Log In</Link>
                 {/* replaces <a></a> */}
             </div>

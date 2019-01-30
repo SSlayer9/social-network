@@ -11,14 +11,7 @@ if (process.env.DATABASE_URL) {
 
 module.exports.registerUser = (first, last, email, hashedPass) => {
     return db.query(
-        `INSERT INTO users (first, last, email, password) VALUES ($1, $2, $3, $4) RETURNING id, first, last`,
-        [first, last, email, hashedPass]
-    );
-};
-
-module.exports.registerUser = (first, last, email, hashedPass) => {
-    return db.query(
-        `INSERT INTO users (first, last, email, password) VALUES ($1, $2, $3, $4) RETURNING id, first, last`,
+        `INSERT INTO users (first, last, email, hashedpass) VALUES ($1, $2, $3, $4) RETURNING id, first, last`,
         [first, last, email, hashedPass]
     );
 };
