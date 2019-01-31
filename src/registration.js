@@ -37,7 +37,7 @@ export default class Registration extends React.Component {
     render() {
         console.log("I am rendering");
         return (
-            <div className=" form register-form">
+            <div style={form}>
                 {this.state.error && (
                     <div className="error">Oops! Something went wrong!</div>
                 )}
@@ -65,3 +65,9 @@ export default class Registration extends React.Component {
         );
     }
 }
+
+const form = {
+    display: "flex",
+    flexDirection: "column",
+    margin: "0 auto"
+};

@@ -6,14 +6,12 @@ import { HashRouter, Route, Link } from "react-router-dom";
 //this is a function component
 export default function Welcome() {
     return (
-        <div className="welcome-page">
+        <div style={flexContainer}>
             <HashRouter>
-                <div className="landing-page">
-                    <h1 className="landing-title">
-                        Welcome to this Social Network
-                    </h1>
-                    <div className="landing-image-wrapper">
-                        <img id="landing-image" src="/assets/logo.png" />
+                <div>
+                    <h1>Welcome to this Social Network</h1>
+                    <div style={imageSize}>
+                        <img style={image} src="/assets/logo.png" />
                     </div>
                     <Route exact path="/" component={Registration} />
                     <Route path="/login" component={Login} />
@@ -22,3 +20,16 @@ export default function Welcome() {
         </div>
     );
 }
+
+const flexContainer = {
+    display: "flex",
+    justifyContent: "center"
+};
+const imageSize = {
+    width: "200px",
+    height: "200px"
+};
+const image = {
+    maxWidth: "100%",
+    maxHeight: "100%"
+};

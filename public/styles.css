@@ -20,37 +20,7 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-.landing-page {
-    /* display: flex; */
-    /* justify-content: center; */
-}
-.landing-image-wrapper {
-    width: 400px;
-    height: auto;
-}
-#landing-image {
-    max-width: 100%;
-    max-height: 100%;
-}
 
-.header {
-    width: auto;
-    height: 150px;
-    border: 2px solid blue;
-}
-.header-image {
-    display: inline-block;
-    max-width: 100%;
-    max-height: 100%;
-}
-.header-title {
-    display: inline;
-}
-.form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form > input {
+input {
     width: 200px;
 }

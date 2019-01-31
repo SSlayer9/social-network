@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
-import Homepage from "./homepage";
+import App from "./app";
 
 let component;
 
 if (location.pathname == "/welcome") {
     component = <Welcome />;
 } else {
-    // component = <img src="/assets/logo.png" />;
-    component = <Homepage />;
+    component = <App />;
 }
 
 ReactDOM.render(component, document.querySelector("main"));
