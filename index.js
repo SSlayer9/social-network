@@ -97,19 +97,28 @@ app.post("/welcome/register", function(req, res) {
 });
 
 app.post("/welcome/login", function(req, res) {
-    console.log("login post req: ", req.body);
-    db.getUserByEmail(req.body.email)
-        .then(dbData => {
-            console.log("Returned UserInfo von db:", dbData);
-            req.session.userId = dbData.rows[0].id;
-            req.session.name = `${dbData.rows[0].first} ${dbData.rows[0].last}`;
-            res.json({
-                success: true
+    db.getUserByEmail(req.body.email).then(dbData => {
+        console.log("Returned UserInfo von db:", dbData);
+        req.session.userId = dbData.rows[0].id;
+        req.session.name = `${dbData.rows[0].first} ${dbData.rows[0].last}`;
+        return bcrypt
+            .comparePassword(req.body.password, dbData.rows[0].hashedpass)
+            .then(bool => {
+                if (bool) {
+                    res.json({
+                        success: true
+                    });
+                } else {
+                    req.session = null;
+                    res.json({
+                        success: false
+                    });
+                }
+            })
+            .catch(err => {
+                console.log("Error app.post/login: ", err);
             });
-        })
-        .catch(err => {
-            console.log("Error app.post/login: ", err);
-        });
+    });
 });
 
 app.get("/welcome", function(req, res) {

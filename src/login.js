@@ -34,6 +34,11 @@ export default class Login extends React.Component {
         return (
             <div className="form">
                 <h1>Please log in!</h1>
+                {this.state.error && (
+                    <div className="error">
+                        Oops! Something went wrong,please try again!
+                    </div>
+                )}
 
                 <label htmlFor="email">email</label>
                 <input name="email" id="email" onChange={this.handleChange} />
