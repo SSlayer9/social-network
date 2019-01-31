@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "./axios";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -14,8 +14,21 @@ export default class Login extends React.Component {
         this[e.target.name] = e.target.value;
     }
     submit() {
-        console.log("this in axios login: ", this);
-        axios.post("/welcome/login");
+        axios
+            .post("/welcome/login", {
+                email: this.email,
+                password: this.password
+            })
+            .then(({ data }) => {
+                console.log("Data in axios login", data);
+                if (data.success) {
+                    location.replace("/");
+                } else {
+                    this.setState({
+                        error: true
+                    });
+                }
+            });
     }
     render() {
         return (
@@ -23,10 +36,14 @@ export default class Login extends React.Component {
                 <h1>Please log in!</h1>
 
                 <label htmlFor="email">email</label>
-                <input name="email" id="email" />
+                <input name="email" id="email" onChange={this.handleChange} />
 
                 <label htmlFor="password">Password</label>
-                <input name="password" id="password" />
+                <input
+                    name="password"
+                    id="password"
+                    onChange={this.handleChange}
+                />
 
                 <button onClick={this.submit}>Log In</button>
                 <Link to="/">Back to Registration</Link>

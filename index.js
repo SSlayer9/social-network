@@ -57,7 +57,7 @@ if (process.env.NODE_ENV != "production") {
 
 // ROUTES    ######################################################
 app.post("/welcome/register", function(req, res) {
-    console.log("REq.body post register", req.body);
+    console.log("Req.body post register", req.body);
     if (
         !req.body.first ||
         !req.body.last ||
@@ -96,9 +96,21 @@ app.post("/welcome/register", function(req, res) {
     }
 });
 
-// app.get('/welcome/login', (req,res) {
-
-// }),
+app.post("/welcome/login", function(req, res) {
+    console.log("login post req: ", req.body);
+    db.getUserByEmail(req.body.email)
+        .then(dbData => {
+            console.log("Returned UserInfo von db:", dbData);
+            req.session.userId = dbData.rows[0].id;
+            req.session.name = `${dbData.rows[0].first} ${dbData.rows[0].last}`;
+            res.json({
+                success: true
+            });
+        })
+        .catch(err => {
+            console.log("Error app.post/login: ", err);
+        });
+});
 
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {

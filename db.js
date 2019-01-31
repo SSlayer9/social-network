@@ -9,9 +9,15 @@ if (process.env.DATABASE_URL) {
     db = spicedPg(`posrgres:${dbUser}:${dbPass}@localhost:5432/social`);
 }
 
+// USER REGISTRATION
 module.exports.registerUser = (first, last, email, hashedPass) => {
     return db.query(
         `INSERT INTO users (first, last, email, hashedpass) VALUES ($1, $2, $3, $4) RETURNING id, first, last`,
         [first, last, email, hashedPass]
     );
+};
+
+//USER LOGIN
+module.exports.getUserByEmail = email => {
+    return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 };

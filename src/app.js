@@ -8,12 +8,16 @@ export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
+            first: "",
+            last: "",
             uploaderIsVisible: false
         };
     }
 
     componentDidMount() {
-        axios.get("/user");
+        axios
+            .get("/user")
+            .then(res => console.log("Respond axios getUser: ", res));
         // TODO: get Info about logged in User with that request
         this.setState({
             //TODO: we want to set the state for the user. Make this dynamic(find a way myself)
