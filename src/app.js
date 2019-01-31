@@ -3,28 +3,34 @@ import Logo from "./logo";
 import axios from "./axios";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
+import { bindActionCreators } from "redux";
 
 export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            first: "",
-            last: "",
             uploaderIsVisible: false
         };
     }
 
     componentDidMount() {
-        axios
-            .get("/user/")
-            .then(res => console.log("Respond axios getUser: ", res));
-        // TODO: get Info about logged in User with that request
-        this.setState({
-            //TODO: we want to set the state for the user. Make this dynamic(find a way myself)
-            first: "Gitti",
-            last: "Fries"
-        });
+        axios.get("/user").then(
+            function(response) {
+                const id = response.data[0].id;
+                const first = response.data[0].first;
+                const last = response.data[0].last;
+                const pictureUrl = response.data[0].url;
+
+                this.setState({
+                    id,
+                    first,
+                    last,
+                    pictureUrl
+                });
+            }.bind(this)
+        );
     }
+
     render() {
         return (
             <div>

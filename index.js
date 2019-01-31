@@ -102,7 +102,8 @@ app.post("/welcome/login", function(req, res) {
     db.getUserByEmail(email).then(dbData => {
         req.session = {
             userId: dbData.rows[0].id,
-            name: `${dbData.rows[0].first} ${dbData.rows[0].last}`
+            first: dbData.rows[0].first,
+            last: dbData.rows[0].last
         };
 
         return bcrypt
@@ -126,8 +127,10 @@ app.post("/welcome/login", function(req, res) {
 });
 
 app.get("/user", (req, res) => {
-    const email = req.session.email;
-    db.getUserInfo(email).then(dbData => {
+    console.log("app.getUSER req.session:", req.session);
+    const id = req.session.userId;
+    db.getUserInfo(id).then(dbData => {
+        console.log("Responden from index.js get user dbData: ", dbData);
         res.json(dbData.rows);
     });
 });

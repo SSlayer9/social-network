@@ -23,9 +23,6 @@ module.exports.getUserByEmail = email => {
 };
 
 //GET USER INFO
-module.exports.getUserInfo = email => {
-    return db.query(
-        `SELECT (id, first, last, url) FROM users WHERE email = $1`,
-        [email]
-    );
+module.exports.getUserInfo = id => {
+    return db.query(`SELECT * FROM users WHERE id = $1`, [id]);
 };
