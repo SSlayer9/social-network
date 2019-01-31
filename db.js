@@ -21,3 +21,11 @@ module.exports.registerUser = (first, last, email, hashedPass) => {
 module.exports.getUserByEmail = email => {
     return db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 };
+
+//GET USER INFO
+module.exports.getUserInfo = email => {
+    return db.query(
+        `SELECT (id, first, last, url) FROM users WHERE email = $1`,
+        [email]
+    );
+};

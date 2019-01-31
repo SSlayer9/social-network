@@ -97,10 +97,14 @@ app.post("/welcome/register", function(req, res) {
 });
 
 app.post("/welcome/login", function(req, res) {
-    db.getUserByEmail(req.body.email).then(dbData => {
-        console.log("Returned UserInfo von db:", dbData);
-        req.session.userId = dbData.rows[0].id;
-        req.session.name = `${dbData.rows[0].first} ${dbData.rows[0].last}`;
+    const email = req.body.email;
+
+    db.getUserByEmail(email).then(dbData => {
+        req.session = {
+            userId: dbData.rows[0].id,
+            name: `${dbData.rows[0].first} ${dbData.rows[0].last}`
+        };
+
         return bcrypt
             .comparePassword(req.body.password, dbData.rows[0].hashedpass)
             .then(bool => {
@@ -121,6 +125,16 @@ app.post("/welcome/login", function(req, res) {
     });
 });
 
+app.get("/user", (req, res) => {
+    const email = req.session.email;
+    db.getUserInfo(email).then(dbData => {
+        res.json(dbData.rows);
+    });
+});
+// ----------------------------------
+
+// ------------------------------------
+// 2 below should come last
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
         res.redirect("/");

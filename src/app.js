@@ -16,7 +16,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         axios
-            .get("/user")
+            .get("/user/")
             .then(res => console.log("Respond axios getUser: ", res));
         // TODO: get Info about logged in User with that request
         this.setState({
