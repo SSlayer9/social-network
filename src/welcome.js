@@ -6,9 +6,9 @@ import { HashRouter, Route, Link } from "react-router-dom";
 //this is a function component
 export default function Welcome() {
     return (
-        <div style={flexContainer}>
+        <div style={{ height: "100vh", width: "100vw" }}>
             <HashRouter>
-                <div>
+                <div style={flexContainer}>
                     <h1>Welcome to this Social Network</h1>
                     <div style={imageSize}>
                         <img style={image} src="/assets/logo.png" />
@@ -23,7 +23,8 @@ export default function Welcome() {
 
 const flexContainer = {
     display: "flex",
-    justifyContent: "center"
+    flexDirection: "row",
+    alignItems: "center"
 };
 const imageSize = {
     width: "200px",

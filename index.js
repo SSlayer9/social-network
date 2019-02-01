@@ -10,6 +10,8 @@ const path = require("path");
 const uidSafe = require("uid-safe");
 const csurf = require("csurf");
 const bcrypt = require("./bcrypt.js");
+const s3 = require("./s3");
+const config = require("./config");
 
 app.use(compression());
 const diskStorage = multer.diskStorage({
@@ -129,14 +131,28 @@ app.post("/welcome/login", function(req, res) {
 app.get("/user", (req, res) => {
     console.log("app.getUSER req.session:", req.session);
     const id = req.session.userId;
-    db.getUserInfo(id).then(dbData => {
-        console.log("Responden from index.js get user dbData: ", dbData);
-        res.json(dbData.rows);
-    });
+    db.getUserInfo(id)
+        .then(dbData => {
+            res.json(dbData.rows);
+        })
+        .catch(err => {
+            console.log("err in post upload:", err);
+        });
 });
-// ----------------------------------
 
-// ------------------------------------
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    const fullUrl = config.s3Url + req.file.filename;
+    const userId = req.session.userId;
+    db.addProfilePic(fullUrl, userId)
+        .then(({ rows }) => {
+            console.log("Rows in app post uploade: ", rows);
+            res.json(rows[0]);
+        })
+        .catch(err => {
+            console.log("err in post upload:", err);
+        });
+});
+
 // 2 below should come last
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {

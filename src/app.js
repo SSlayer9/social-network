@@ -3,14 +3,17 @@ import Logo from "./logo";
 import axios from "./axios";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
+import Header from "./header";
 import { bindActionCreators } from "redux";
 
 export default class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             uploaderIsVisible: false
         };
+        this.showUploader = this.showUploader.bind(this);
+        this.updateProfileUrl = this.updateProfileUrl.bind(this);
     }
 
     componentDidMount() {
@@ -30,13 +33,37 @@ export default class App extends React.Component {
             }.bind(this)
         );
     }
+    showUploader() {
+        this.setState({
+            uploaderIsVisible: true
+        });
+    }
+
+    updateProfileUrl(url) {
+        this.setState({
+            pictureUrl: url,
+            uploaderIsVisible: false
+        });
+    }
 
     render() {
         return (
             <div>
-                <Logo />
-                <ProfilePic first={this.state.first} />
-                {this.state.uploaderIsVisible} && <Uploader />
+                <Header
+                    showUploader={this.showUploader}
+                    pictureUrl={this.state.pictureUrl}
+                    updateProfileUrl={this.updateProfileUrl}
+                />
+                <ProfilePic
+                    showUploader={this.showUploader}
+                    pictureUrl={this.state.pictureUrl}
+                    first={this.state.first}
+                    last={this.state.last}
+                    updateProfileUrl={this.updateProfileUrl}
+                />
+                {this.state.uploaderIsVisible && (
+                    <Uploader updateProfileUrl={this.updateProfileUrl} />
+                )}
                 <h1>Welcome, {this.state.first}</h1>
             </div>
         );

@@ -69,5 +69,6 @@ export default class Registration extends React.Component {
 const form = {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
     margin: "0 auto"
 };
