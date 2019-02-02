@@ -35,7 +35,7 @@ export default class App extends React.Component {
     }
     showUploader() {
         this.setState({
-            uploaderIsVisible: true
+            uploaderIsVisible: !this.state.uploaderIsVisible
         });
     }
 
