@@ -8,9 +8,21 @@ body {
     display: flex;
     /* height: 100vh; */
     align-items: center;
+    color: #9c79cc;
+    padding: 10px;
 }
 main {
     margin: 0 auto;
+}
+
+.wrapper {
+    width: 60vw;
+    height: 70vh;
+    margin: 3rem auto 0;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2);
+}
+span {
+    text-transform: capitalize;
 }
 button {
     padding: 0.3rem 1rem;
@@ -32,31 +44,67 @@ input {
 }
 
 .header {
+    display: flex;
+    justify-content: space-between;
     width: 100vw;
-    height: 78px;
-    border-bottom: 2px solid purple;
+    height: 60px;
+    padding: 0 30px;
+    border-bottom: 1px solid #9c79cc;
 }
 .header-logo-container {
     width: 270px;
-    height: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* position: absolute;
+    top: -4px;
+    left: 10px;
+ */
 }
 .header-pic-container {
-    /* maxHeight: "100%", */
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 60px;
+    height: 60px;
+    /* float: right; */
 }
+
 .header img {
-    width: 100%;
+    width: 50px;
+    object-fit: cover;
+    /* padding-top: 22px; */
+}
+.header #header-logo {
+    width: 230px;
+}
+.profile {
+    display: flex;
+}
+.profile-wrapper {
+    margin-left: 2rem;
 }
 
 .profile img {
     width: 200px;
     height: 250px;
     object-fit: cover;
+}
+.to-editor-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.to-editor-link:hover {
+    color: #7e48ca;
+}
+textarea {
+    width: 300px;
+    height: 150px;
+}
+
+.upload-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: 65%;
+    position: absolute;
+    top: 27%;
+    left: 10%;
+    background: #f1f0f3;
 }

@@ -40,7 +40,7 @@ export default class Uploader extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="upload-modal">
                 <h1> Upload a Profile Pic</h1>
                 <input
                     type="file"

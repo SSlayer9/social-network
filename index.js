@@ -153,6 +153,16 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
+app.post("/userbio", (req, res) => {
+    const bio = req.body.bio;
+    const id = req.session.userId;
+
+    db.addUserBio(bio, id).then(data => {
+        const updatedBio = data.rows[0].bio;
+        res.json(updatedBio);
+    });
+});
+
 // 2 below should come last
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {

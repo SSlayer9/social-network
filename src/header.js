@@ -6,7 +6,7 @@ export default function Header(props) {
         <div className="header">
             <div className="header-logo-container">
                 {" "}
-                <img src="/assets/unicorn-logo.png" />
+                <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
 
             <div className="header-pic-container">
@@ -19,24 +19,3 @@ export default function Header(props) {
         </div>
     );
 }
-
-// const header = {
-//     width: "100vw",
-//     height: "78px",
-//     borderBottom: "2px solid purple"
-// };
-// const header-logo = {
-//     width: "270px",
-//     height: "auto",
-//     position: "absolute",
-//     top: "0",
-//     left: "0"
-// };
-// const header-pic = {
-//     // maxHeight: "100%",
-//     width: "100px",
-//     height: "100px",
-//     position: "absolute",
-//     top: "0",
-//     right: "0"
-// };

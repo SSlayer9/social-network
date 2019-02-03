@@ -5,16 +5,20 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Header from "./header";
 import Profile from "./profile";
+import BioEditor from "./bioeditor";
 import { bindActionCreators } from "redux";
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploaderIsVisible: false
+            uploaderIsVisible: false,
+            bioEditorIsVisible: false
         };
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
+        this.toggleBioEditor = this.toggleBioEditor.bind(this);
+        this.updateBio = this.updateBio.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +51,18 @@ export default class App extends React.Component {
         });
     }
 
+    toggleBioEditor() {
+        this.setState({
+            bioEditorIsVisible: !this.state.bioEditorIsVisible
+        });
+    }
+
+    updateBio(bio) {
+        this.setState({
+            bio
+        });
+    }
+
     render() {
         return (
             <div>
@@ -55,35 +71,26 @@ export default class App extends React.Component {
                     pictureUrl={this.state.pictureUrl}
                     updateProfileUrl={this.updateProfileUrl}
                 />
-                <div style={wrapper}>
+                <div className="wrapper">
                     <Profile
                         showUploader={this.showUploader}
                         pictureUrl={this.state.pictureUrl}
                         first={this.state.first}
                         last={this.state.last}
                         updateProfileUrl={this.updateProfileUrl}
+                        bio={this.state.bio}
+                        toggleBioEditor={this.toggleBioEditor}
+                        bioEditorIsVisible={this.state.bioEditorIsVisible}
+                        updateBio={this.updateBio}
                     />
-
-                    {/* <ProfilePic
-                        showUploader={this.showUploader}
-                        pictureUrl={this.state.pictureUrl}
-                        first={this.state.first}
-                        last={this.state.last}
-                        updateProfileUrl={this.updateProfileUrl}
-                    /> */}
+                    {/* {this.state.bioEditorIsVisible && (
+                        <BioEditor updateBio={this.updateBio} />
+                    )} */}
                     {this.state.uploaderIsVisible && (
                         <Uploader updateProfileUrl={this.updateProfileUrl} />
                     )}
-                    <h1>Welcome, {this.state.first}</h1>
                 </div>
             </div>
         );
     }
 }
-
-const wrapper = {
-    width: "60vw",
-    height: "70vh",
-    margin: "3rem auto 0",
-    border: "2px solid blue"
-};

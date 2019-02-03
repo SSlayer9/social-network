@@ -34,3 +34,11 @@ module.exports.addProfilePic = (fullUrl, userId) => {
         userId
     ]);
 };
+
+//ADD USER BIO
+module.exports.addUserBio = (bio, id) => {
+    return db.query(`UPDATE users SET bio = $1 WHERE id=$2 RETURNING bio`, [
+        bio,
+        id
+    ]);
+};
