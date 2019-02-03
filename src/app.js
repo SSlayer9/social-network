@@ -4,6 +4,7 @@ import axios from "./axios";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Header from "./header";
+import Profile from "./profile";
 import { bindActionCreators } from "redux";
 
 export default class App extends React.Component {
@@ -54,18 +55,35 @@ export default class App extends React.Component {
                     pictureUrl={this.state.pictureUrl}
                     updateProfileUrl={this.updateProfileUrl}
                 />
-                <ProfilePic
-                    showUploader={this.showUploader}
-                    pictureUrl={this.state.pictureUrl}
-                    first={this.state.first}
-                    last={this.state.last}
-                    updateProfileUrl={this.updateProfileUrl}
-                />
-                {this.state.uploaderIsVisible && (
-                    <Uploader updateProfileUrl={this.updateProfileUrl} />
-                )}
-                <h1>Welcome, {this.state.first}</h1>
+                <div style={wrapper}>
+                    <Profile
+                        showUploader={this.showUploader}
+                        pictureUrl={this.state.pictureUrl}
+                        first={this.state.first}
+                        last={this.state.last}
+                        updateProfileUrl={this.updateProfileUrl}
+                    />
+
+                    {/* <ProfilePic
+                        showUploader={this.showUploader}
+                        pictureUrl={this.state.pictureUrl}
+                        first={this.state.first}
+                        last={this.state.last}
+                        updateProfileUrl={this.updateProfileUrl}
+                    /> */}
+                    {this.state.uploaderIsVisible && (
+                        <Uploader updateProfileUrl={this.updateProfileUrl} />
+                    )}
+                    <h1>Welcome, {this.state.first}</h1>
+                </div>
             </div>
         );
     }
 }
+
+const wrapper = {
+    width: "60vw",
+    height: "70vh",
+    margin: "3rem auto 0",
+    border: "2px solid blue"
+};

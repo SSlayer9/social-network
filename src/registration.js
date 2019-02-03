@@ -60,7 +60,6 @@ export default class Registration extends React.Component {
 
                 <button onClick={this.submit}>Register</button>
                 <Link to="/login">Log In</Link>
-                {/* replaces <a></a> */}
             </div>
         );
     }

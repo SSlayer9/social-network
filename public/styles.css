@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: url(./assets/background-img.jpg) no-repeat center center;
+    /* background: url(./assets/background-img.jpg) no-repeat center center; */
     display: flex;
     /* height: 100vh; */
     align-items: center;
@@ -29,4 +29,34 @@ button {
 
 input {
     width: 200px;
+}
+
+.header {
+    width: 100vw;
+    height: 78px;
+    border-bottom: 2px solid purple;
+}
+.header-logo-container {
+    width: 270px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.header-pic-container {
+    /* maxHeight: "100%", */
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.header img {
+    width: 100%;
+}
+
+.profile img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
 }

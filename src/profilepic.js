@@ -11,18 +11,5 @@ export default function ProfilePic(props) {
     }
     let name = props.first + "" + props.last;
 
-    return (
-        <div style={profileBox} onClick={props.showUploader}>
-            <img src={url} alt={name} style={pic} />
-        </div>
-    );
+    return <img src={url} alt={name} onClick={props.showUploader} />;
 }
-
-const profileBox = {
-    width: "100px",
-    height: "100px",
-    cursor: "pointer"
-};
-const pic = {
-    width: "100%"
-};
