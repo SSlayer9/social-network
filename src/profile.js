@@ -17,7 +17,6 @@ export default function Profile(props) {
 
                 {props.bio && (
                     <div className="bio-container">
-                        <p>About me</p>
                         <p className="bio-area"> {props.bio} </p>
                         <p
                             onClick={props.toggleBioEditor}
@@ -36,15 +35,14 @@ export default function Profile(props) {
                         Add Your Bio Now
                     </p>
                 )}
-
-                {props.bioEditorIsVisible && (
-                    <BioEditor
-                        bio={props.bio}
-                        updateBio={props.updateBio}
-                        toggleBioEditor={props.toggleBioEditor}
-                    />
-                )}
             </div>
+            {props.bioEditorIsVisible && (
+                <BioEditor
+                    bio={props.bio}
+                    updateBio={props.updateBio}
+                    toggleBioEditor={props.toggleBioEditor}
+                />
+            )}
         </div>
     );
 }

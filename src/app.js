@@ -38,7 +38,6 @@ export default class App extends React.Component {
             }.bind(this)
         );
 
-        // TODO:
         axios.get("/userbio").then(
             function(response) {
                 const bio = response.data;

@@ -17,14 +17,7 @@ export default class BioEditor extends React.Component {
         });
     }
 
-    // updateBio(bio) {
-    //     this.setState({
-    //         bio
-    //     });
-    // }
-
     submitBio() {
-        console.log("Submit Bio:", this.state.bio);
         axios
             .post("/userbio", {
                 bio: this.state.bio
@@ -42,24 +35,16 @@ export default class BioEditor extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="bio-editor-modal">
                 <textarea
                     name="bio"
                     type="text"
                     value={this.state.bio}
                     onChange={this.handleChange}
                 />
-                {/* {props.bio && <button onClick={this.saveBio}>Edit Bio</button>} */}
+
                 <button onClick={this.submitBio}>Save Bio</button>
             </div>
         );
     }
 }
-// ------------------------------
-// {
-//     !props.bio && (
-//         <p onClick={props.toggleBioEditor} className="addbio-link">
-//             Add Your Bio Now
-//         </p>
-//     );
-// }

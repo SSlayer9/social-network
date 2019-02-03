@@ -26,7 +26,7 @@ export default class Registration extends React.Component {
             .then(({ data }) => {
                 console.log("Data:", data);
                 if (data.success) {
-                    location.replace("/"); //this is redirecting to app.js,when logge in
+                    location.replace("/"); //this is redirecting to app.js,when logged in
                 } else {
                     this.setState({
                         error: true

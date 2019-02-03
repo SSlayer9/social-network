@@ -29,7 +29,7 @@ export default class Uploader extends React.Component {
                 console.log("Error in uploader.js /uploadFile: ", err);
             });
 
-        //clear the input-field after upload
+        //Clear Input
         file.value = "";
     }
 
