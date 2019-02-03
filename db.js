@@ -42,3 +42,8 @@ module.exports.addUserBio = (bio, id) => {
         id
     ]);
 };
+
+//GET USER BIO
+module.exports.getUserBio = id => {
+    return db.query(`SELECT bio FROM users WHERE id=$1`, [id]);
+};

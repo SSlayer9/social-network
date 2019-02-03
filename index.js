@@ -153,6 +153,14 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
+app.get("/userbio", (req, res) => {
+    const id = req.session.userId;
+    db.getUserBio(id).then(data => {
+        const savedBio = data.rows[0].bio;
+        res.json(savedBio);
+    });
+});
+
 app.post("/userbio", (req, res) => {
     const bio = req.body.bio;
     const id = req.session.userId;

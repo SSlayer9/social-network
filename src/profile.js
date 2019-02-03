@@ -11,12 +11,14 @@ export default function Profile(props) {
                 updateProfileUrl={props.updateProfileUrl}
             />
             <div className="profile-wrapper">
-                <h1>
+                <h1 className="profile-welcome">
                     Welcome, <span>{props.first}</span>{" "}
                 </h1>
+
                 {props.bio && (
-                    <div>
-                        <p> {props.bio} </p>
+                    <div className="bio-container">
+                        <p>About me</p>
+                        <p className="bio-area"> {props.bio} </p>
                         <p
                             onClick={props.toggleBioEditor}
                             className="to-editor-link"
