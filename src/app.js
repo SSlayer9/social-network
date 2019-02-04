@@ -5,8 +5,10 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Header from "./header";
 import Profile from "./profile";
+import OtherProfile from "./otherprofile";
 import BioEditor from "./bioeditor";
 import { bindActionCreators } from "redux";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -82,25 +84,38 @@ export default class App extends React.Component {
                     pictureUrl={this.state.pictureUrl}
                     updateProfileUrl={this.updateProfileUrl}
                 />
-                <div className="wrapper">
-                    <Profile
-                        showUploader={this.showUploader}
-                        pictureUrl={this.state.pictureUrl}
-                        first={this.state.first}
-                        last={this.state.last}
-                        updateProfileUrl={this.updateProfileUrl}
-                        bio={this.state.bio}
-                        toggleBioEditor={this.toggleBioEditor}
-                        bioEditorIsVisible={this.state.bioEditorIsVisible}
-                        updateBio={this.updateBio}
-                    />
-                    {/* {this.state.bioEditorIsVisible && (
-                        <BioEditor updateBio={this.updateBio} />
-                    )} */}
-                    {this.state.uploaderIsVisible && (
-                        <Uploader updateProfileUrl={this.updateProfileUrl} />
-                    )}
-                </div>
+                <BrowserRouter>
+                    <div>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <div className="wrapper">
+                                    <Profile
+                                        showUploader={this.showUploader}
+                                        pictureUrl={this.state.pictureUrl}
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        updateProfileUrl={this.updateProfileUrl}
+                                        bio={this.state.bio}
+                                        toggleBioEditor={this.toggleBioEditor}
+                                        bioEditorIsVisible={
+                                            this.state.bioEditorIsVisible
+                                        }
+                                        updateBio={this.updateBio}
+                                    />
+                                </div>
+                            )}
+                        />
+                        <Route path="/user/:id" component={OtherProfile} />
+
+                        {this.state.uploaderIsVisible && (
+                            <Uploader
+                                updateProfileUrl={this.updateProfileUrl}
+                            />
+                        )}
+                    </div>
+                </BrowserRouter>
             </div>
         );
     }

@@ -12,8 +12,10 @@ export default function Profile(props) {
             />
             <div className="profile-wrapper">
                 <h1 className="profile-welcome">
-                    Welcome, <span>{props.first}</span>{" "}
+                    Welcome, Unicorn-<span>{props.first}</span>{" "}
                 </h1>
+
+                {props.bio && <p className="about-padding">About you:</p>}
 
                 {props.bio && (
                     <div className="bio-container">

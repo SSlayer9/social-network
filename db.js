@@ -47,3 +47,10 @@ module.exports.addUserBio = (bio, id) => {
 module.exports.getUserBio = id => {
     return db.query(`SELECT bio FROM users WHERE id=$1`, [id]);
 };
+
+//GET OTHERUSER INFO
+module.exports.getOtherUserInfo = id => {
+    return db.query(`SELECT first, last, url, bio, id FROM users WHERE id=$1`, [
+        id
+    ]);
+};

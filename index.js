@@ -129,7 +129,6 @@ app.post("/welcome/login", function(req, res) {
 });
 
 app.get("/user", (req, res) => {
-    console.log("app.getUSER req.session:", req.session);
     const id = req.session.userId;
     db.getUserInfo(id)
         .then(dbData => {
@@ -155,20 +154,51 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 app.get("/userbio", (req, res) => {
     const id = req.session.userId;
-    db.getUserBio(id).then(data => {
-        const savedBio = data.rows[0].bio;
-        res.json(savedBio);
-    });
+    db.getUserBio(id)
+        .then(dbData => {
+            const savedBio = dbData.rows[0].bio;
+            res.json(savedBio);
+        })
+        .catch(err => {
+            console.log("Err in get /userbio: ", err);
+        });
 });
 
 app.post("/userbio", (req, res) => {
     const bio = req.body.bio;
     const id = req.session.userId;
 
-    db.addUserBio(bio, id).then(data => {
-        const updatedBio = data.rows[0].bio;
-        res.json(updatedBio);
-    });
+    db.addUserBio(bio, id)
+        .then(dbData => {
+            const updatedBio = dbData.rows[0].bio;
+            res.json(updatedBio);
+        })
+        .catch(err => {
+            console.log("Err in post/userbio: ", err);
+        });
+});
+
+app.get("/user/:id/info", (req, res) => {
+    console.log("req.params.id:", req.params.id);
+    const userId = req.session.userId;
+    const targetId = req.params.id;
+    if (userId == targetId) {
+        return res.json({
+            redirectTo: "/"
+        });
+    }
+    db.getOtherUserInfo(targetId)
+        .then(data => {
+            console.log("Get Other User:", data);
+            const OtherUserInfo = data.rows[0];
+            res.json(OtherUserInfo);
+        })
+        .catch(err => {
+            console.log("Err in get/user/id/info: ", err);
+            res.json({
+                redirectTo: "/"
+            });
+        });
 });
 
 // 2 below should come last
