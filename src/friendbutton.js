@@ -10,11 +10,8 @@ export default class FriendButton extends React.Component {
         this.updateFriendship = this.updateFriendship.bind(this);
     }
 
-    // FIXME:
+    //get the current status of friendship when profile loads
     componentDidMount() {
-        //get the initial status of friendship mit GEt Route
-        //based off the status
-        //hier machen wir die
         axios
             .get("/get-initial-status/" + this.props.otherUserId)
             .then(response => {
@@ -26,24 +23,33 @@ export default class FriendButton extends React.Component {
             .catch(err => {
                 console.log("Err axios get-inital-status:", err);
             });
-        // console.log the respone and setState({}) basend on the response. If getting nothing back(no friendshipt) then button shoul say <add friiend>
-
-        // response accepted: true -> <end friendship> btn by changing btn-text in state
-
-        // TODO: //if accepted is false, button should say either <accept friendshipt> or <cancelFriendrequest> . depending on who send the request.
     }
-
+    // change the status of friendship after clicking button
     updateFriendship() {
-        console.log("Friendship was clicked!");
-
-        axios
-            .post("/send-friend-request" + this.props.otherUserId, {
-                buttonText: this.state.buttonText
-            })
-            .then(response);
-
-        //here are all the POST routes
-        //have to read what the button text says und dann die dem entsprechende Function ausfuhren
+        if (this.state.buttonText == "Make Friend Request") {
+            axios.post("/send-friend-request/" + this.props.otherUserId);
+            this.setState({
+                buttonText: "Cancel Friend Request"
+            });
+        }
+        if (this.state.buttonText == "Cancel Friend Request") {
+            axios.post("/cancel-friend-request/" + this.props.otherUserId);
+            this.setState({
+                buttonText: "Make Friend Request"
+            });
+        }
+        if (this.state.buttonText == "Accept Friend Request") {
+            axios.post("/accept-friend-request" + this.props.otherUserId);
+            this.setState({
+                buttonText: "Unfriend"
+            });
+        }
+        if (this.state.buttonText == "Unfriend") {
+            axios.post("/cancel-friend-request/" + this.props.otherUserId);
+            this.setState({
+                buttonText: "Make Friend Request"
+            });
+        }
     }
 
     render() {

@@ -179,7 +179,6 @@ app.post("/userbio", (req, res) => {
 });
 
 app.get("/user/:id/info", (req, res) => {
-    // console.log("req.params.id:", req.params.id);
     const userId = req.session.userId;
     const targetId = req.params.id;
     if (userId == targetId) {
@@ -237,24 +236,25 @@ app.get("/get-initial-status/:id", (req, res) => {
         });
 });
 
-// FIXME:
 app.post("/send-friend-request/:id", (req, res) => {
-    console.log(
-        "Post/send friend request params.id rew.session, req.body:",
-        req.params.id,
-        req.session.userId,
-        req.body
-    );
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
 
-    db.createFriendship(loggedInUserId, otherUserId)
-        .then(data => {
-            console.log("Data after sending FriendREquest: ", data);
-        })
-        .catch(err => {
-            console.log("Err in /send-friend-request: ", err);
-        });
+    db.createFriendship(loggedInUserId, otherUserId);
+});
+
+app.post("/cancel-friend-request/:id", (req, res) => {
+    const loggedInUserId = req.session.userId;
+    const otherUserId = req.params.id;
+
+    db.endFriendship(loggedInUserId, otherUserId);
+});
+
+app.post("/accept-friend-request/:id", (req, res) => {
+    const loggedInUserId = req.session.userId;
+    const otherUserId = req.params.id;
+
+    db.acceptFriendship(loggedInUserId, otherUserId);
 });
 
 // 2 below should come last

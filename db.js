@@ -55,7 +55,6 @@ module.exports.getOtherUserInfo = id => {
     ]);
 };
 
-// TODO:
 //CREATE FRIENDSHIP
 module.exports.createFriendship = (loggedInUserId, otherUserId) => {
     return db.query(
@@ -65,12 +64,33 @@ module.exports.createFriendship = (loggedInUserId, otherUserId) => {
 };
 
 //GET FRIENDSHIP STATUS
-FIXME: module.exports.getFriendshipStatus = (loggedInUserId, otherUserId) => {
+module.exports.getFriendshipStatus = (loggedInUserId, otherUserId) => {
     return db.query(
         `
     SELECT * FROM friendships
     WHERE (receiver_id = $1 AND sender_id = $2)
     OR (receiver_id = $2 AND sender_id = $1) `,
+        [loggedInUserId, otherUserId]
+    );
+};
+
+// ACCEPT FRIENDSHIP
+module.exports.acceptFriendship = (loggedInUserId, otherUserId) => {
+    return db.query(
+        `UPDATE friendships
+        WHERE (receiver_id = $1 AND sender_id = $2)
+        OR (receiver_id = $2 AND sender_id = $1)
+        SET accepted = true`,
+        [loggedInUserId, otherUserId]
+    );
+};
+
+//END FRIENDSHIP
+module.exports.endFriendship = (loggedInUserId, otherUserId) => {
+    return db.query(
+        ` DELETE FROM friendships  
+        WHERE (receiver_id = $1 AND sender_id = $2)
+        OR (receiver_id = $2 AND sender_id = $1) `,
         [loggedInUserId, otherUserId]
     );
 };
