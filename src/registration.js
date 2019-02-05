@@ -14,25 +14,26 @@ export default class Registration extends React.Component {
         //this grabs the value of input and assigns it to this
         this[e.target.name] = e.target.value;
     }
-    submit() {
+    async submit() {
         console.log("this is in axios registration:", this);
-        axios
-            .post("/welcome/register", {
+        try {
+            let response = await axios.post("/welcome/register", {
                 first: this.first,
                 last: this.last,
                 email: this.email,
                 password: this.password
-            })
-            .then(({ data }) => {
-                console.log("Data:", data);
-                if (data.success) {
-                    location.replace("/"); //this is redirecting to app.js,when logged in
-                } else {
-                    this.setState({
-                        error: true
-                    });
-                }
             });
+
+            if (response.data.success) {
+                location.replace("/");
+            } else {
+                this.setState({
+                    error: true
+                });
+            }
+        } catch (err) {
+            console.log("Err in Registration Submit: ", err);
+        }
     }
     render() {
         console.log("I am rendering");
