@@ -78,9 +78,10 @@ module.exports.getFriendshipStatus = (loggedInUserId, otherUserId) => {
 module.exports.acceptFriendship = (loggedInUserId, otherUserId) => {
     return db.query(
         `UPDATE friendships
+         SET accepted = true
         WHERE (receiver_id = $1 AND sender_id = $2)
         OR (receiver_id = $2 AND sender_id = $1)
-        SET accepted = true`,
+       `,
         [loggedInUserId, otherUserId]
     );
 };

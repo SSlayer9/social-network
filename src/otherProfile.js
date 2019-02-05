@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "./axios";
-import Profilepic from "./profilepic";
 import FriendButton from "./friendbutton";
 
 export default class OtherProfile extends React.Component {
@@ -9,32 +8,27 @@ export default class OtherProfile extends React.Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        axios
-            .get("/user/" + this.props.match.params.id + "/info")
-            .then(
-                function(response) {
-                    if (response.data.redirectTo) {
-                        this.props.history.push(response.data.redirectTo);
-                    }
-                    const first = response.data.first;
-                    const last = response.data.last;
-                    const pictureUrl = response.data.url;
-                    const bio = response.data.bio;
-                    const id = response.data.id;
+    async componentDidMount() {
+        try {
+            let response = await axios.get(
+                "/user/" + this.props.match.params.id + "/info"
+            );
 
-                    this.setState({
-                        first,
-                        last,
-                        pictureUrl,
-                        bio,
-                        id
-                    });
-                }.bind(this)
-            )
-            .catch(err => {
-                console.log(err);
-            });
+            if (response.data.redirectTo) {
+                this.props.history.push(response.data.redirectTo);
+            } else {
+                const { first, last, url, bio, id } = response.data;
+                this.setState({
+                    first,
+                    last,
+                    pictureUrl: url,
+                    bio,
+                    id
+                });
+            }
+        } catch (err) {
+            console.log("Err in Mount fn otherProfile: ", err);
+        }
     }
     render() {
         return (
