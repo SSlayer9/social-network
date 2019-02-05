@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "./axios";
+import axios from "./Axios";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 export default class Registration extends React.Component {
@@ -38,7 +38,7 @@ export default class Registration extends React.Component {
     render() {
         console.log("I am rendering");
         return (
-            <div style={form}>
+            <div className="registration-form">
                 {this.state.error && (
                     <div className="error">Oops! Something went wrong!</div>
                 )}
@@ -59,16 +59,13 @@ export default class Registration extends React.Component {
                     onChange={this.handleChange}
                 />
 
-                <button onClick={this.submit}>Register</button>
-                <Link to="/login">Log In</Link>
+                <button className="register-btn" onClick={this.submit}>
+                    Register
+                </button>
+                <p className="login-offer">
+                    Already a Unicorn? Please <Link to="/login">Log In</Link>
+                </p>
             </div>
         );
     }
 }
-
-const form = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    margin: "0 auto"
-};

@@ -2,8 +2,8 @@ import React from "react";
 
 import App from "./app";
 import Profile from "./profile";
-import Profilepic from "./profilepic";
-import BioEditor from "./bioeditor";
+import Profilepic from "./ProfilePic";
+import BioEditor from "./BioEditor";
 import { shallow } from "enzyme";
 
 // When no bio is passed to it, an "Add" button is rendered.

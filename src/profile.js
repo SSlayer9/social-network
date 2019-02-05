@@ -1,12 +1,12 @@
 import React from "react";
-import Profilepic from "./profilepic";
-import BioEditor from "./bioeditor";
-import FriendButton from "./friendbutton";
+import ProfilePic from "./ProfilePic";
+import BioEditor from "./BioEditor";
+// import FriendButton from "./Friendbutton";
 
 export default function Profile(props) {
     return (
         <div className="profile">
-            <Profilepic
+            <ProfilePic
                 showUploader={props.showUploader}
                 pictureUrl={props.pictureUrl}
                 updateProfileUrl={props.updateProfileUrl}

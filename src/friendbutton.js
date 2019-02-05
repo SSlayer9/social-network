@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "./axios";
+import axios from "./Axios";
 
 export default class FriendButton extends React.Component {
     constructor(props) {

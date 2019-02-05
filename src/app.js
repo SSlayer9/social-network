@@ -1,12 +1,12 @@
 import React from "react";
-import Logo from "./logo";
-import axios from "./axios";
-import ProfilePic from "./profilepic";
-import Uploader from "./uploader";
-import Header from "./header";
-import Profile from "./profile";
-import OtherProfile from "./otherprofile";
-import BioEditor from "./bioeditor";
+import Logo from "./Logo";
+import axios from "./Axios";
+import ProfilePic from "./ProfilePic";
+import Uploader from "./Uploader";
+import Header from "./Header";
+import Profile from "./Profile";
+import OtherProfile from "./OtherProfile";
+import BioEditor from "./BioEditor";
 import { bindActionCreators } from "redux";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 

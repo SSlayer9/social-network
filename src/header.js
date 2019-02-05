@@ -1,5 +1,5 @@
 import React from "react";
-import Profilepic from "./profilepic";
+import Profilepic from "./ProfilePic";
 
 export default function Header(props) {
     return (

@@ -44,21 +44,58 @@ button:hover {
 }
 
 input {
-    width: 200px;
+    width: 250px;
+    border-radius: 20px;
+    height: 30px;
+}
+label {
+    margin-top: 10px;
+    padding-left: 10px;
 }
 .landing-flexcontainer {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column;
+    align-items: center; */
+    border: 2px solid blue;
+    margin: 0 auto;
+    height: 100%;
     align-items: center;
+    width: 80%;
 }
 .landing-imgage-container {
     width: 200px;
     height: 200px;
 }
 .logo-image {
+    animation: wale-logo-float infinite 3s alternate;
     padding-top: 2rem;
     max-width: 100%;
     max-height: 100%;
+}
+
+@keyframes wale-logo-float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(+20px);
+    }
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+.register-btn {
+    align-self: center;
+    margin-top: 20px;
+}
+.login-offer {
+    font-size: 0.8rem;
+    margin-top: 15px;
+    align-self: center;
 }
 
 .header {
@@ -85,6 +122,7 @@ input {
 .header img {
     width: 50px;
     object-fit: cover;
+    cursor: pointer;
     /* padding-top: 22px; */
 }
 .header #header-logo {
@@ -107,6 +145,7 @@ input {
     width: 200px;
     height: 250px;
     object-fit: cover;
+    cursor: pointer;
 }
 .to-editor-link {
     text-decoration: underline;

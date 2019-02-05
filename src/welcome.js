@@ -1,6 +1,6 @@
 import React from "react";
-import Registration from "./registration";
-import Login from "./login";
+import Registration from "./Registration";
+import Login from "./Login";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 //this is a function component
@@ -9,18 +9,21 @@ export default function Welcome() {
         <div style={{ height: "100vh", width: "100vw" }}>
             <HashRouter>
                 <div className="landing-flexcontainer">
-                    <img
-                        style={logoSize}
-                        src="/assets/unicornsss.png"
-                        alt="unicorn logo"
-                    />
-                    <div className="landing-image-container">
+                    <div>
                         <img
-                            className="logo-image"
-                            style={image}
-                            src="/assets/wale-unicorn-shadow.png"
+                            style={logoSize}
+                            src="/assets/unicornsss.png"
+                            alt="unicorn logo"
                         />
+                        <div className="landing-image-container">
+                            <img
+                                className="logo-image"
+                                style={image}
+                                src="/assets/wale-unicorn-shadow.png"
+                            />
+                        </div>
                     </div>
+
                     <Route exact path="/" component={Registration} />
                     <Route path="/login" component={Login} />
                 </div>
@@ -45,7 +48,7 @@ const image = {
 };
 
 const logoSize = {
-    width: "80%",
+    width: "57%",
     height: "auto"
 };
 
