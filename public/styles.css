@@ -39,9 +39,26 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+button:hover {
+    background-color: #435466;
+}
 
 input {
     width: 200px;
+}
+.landing-flexcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.landing-imgage-container {
+    width: 200px;
+    height: 200px;
+}
+.logo-image {
+    padding-top: 2rem;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .header {
@@ -77,8 +94,11 @@ input {
     display: flex;
     justify-content: space-evenly;
 }
+.img-btn-wrapper {
+    max-width: 40%;
+}
 .profile-wrapper {
-    max-width: 50%;
+    max-width: 60%;
 }
 .profile-welcome {
     font-size: 2.6vw;
@@ -99,10 +119,10 @@ input {
     padding: 0.1rem 0.6rem;
 }
 .bio-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    width: 60%;
     /* height: 85%; */
     background: whitesmoke;
     border-radius: 2px;

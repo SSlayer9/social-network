@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios";
 import Profilepic from "./profilepic";
+import FriendButton from "./friendbutton";
 
 export default class OtherProfile extends React.Component {
     constructor(props) {
@@ -13,8 +14,6 @@ export default class OtherProfile extends React.Component {
             .get("/user/" + this.props.match.params.id + "/info")
             .then(
                 function(response) {
-                    console.log("App gett user/:id: Shanti??", response.data);
-
                     if (response.data.redirectTo) {
                         this.props.history.push(response.data.redirectTo);
                     }
@@ -41,7 +40,16 @@ export default class OtherProfile extends React.Component {
         return (
             <div className="wrapper">
                 <div className="profile">
-                    <img src={this.state.pictureUrl} alt={this.state.first} />
+                    <div className="img-btn-wrapper">
+                        <img
+                            src={this.state.pictureUrl}
+                            alt={this.state.first}
+                        />
+
+                        <FriendButton
+                            otherUserId={this.props.match.params.id}
+                        />
+                    </div>
 
                     <div className="profile-wrapper">
                         <h1 className="profile-welcome">

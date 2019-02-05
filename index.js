@@ -179,7 +179,7 @@ app.post("/userbio", (req, res) => {
 });
 
 app.get("/user/:id/info", (req, res) => {
-    console.log("req.params.id:", req.params.id);
+    // console.log("req.params.id:", req.params.id);
     const userId = req.session.userId;
     const targetId = req.params.id;
     if (userId == targetId) {
@@ -189,7 +189,7 @@ app.get("/user/:id/info", (req, res) => {
     }
     db.getOtherUserInfo(targetId)
         .then(data => {
-            console.log("Get Other User:", data);
+            // console.log("Get Other User:", data);
             const OtherUserInfo = data.rows[0];
             res.json(OtherUserInfo);
         })
@@ -198,6 +198,62 @@ app.get("/user/:id/info", (req, res) => {
             res.json({
                 redirectTo: "/"
             });
+        });
+});
+
+app.get("/get-initial-status/:id", (req, res) => {
+    const loggedInUserId = req.session.userId;
+    const otherUserId = req.params.id;
+
+    db.getFriendshipStatus(loggedInUserId, otherUserId)
+        .then(dbData => {
+            // No Request send yet
+            if (!dbData.rows[0]) {
+                res.json({
+                    buttonText: "Make Friend Request"
+                });
+            }
+            // Friend Request Accepted
+            if (dbData.rows[0].accepted) {
+                res.json({
+                    buttonText: "Unfriend"
+                });
+            }
+            // Friend Request sent , but not accepted yet
+            if (dbData.rows[0].accepted == false) {
+                if (loggedInUserId == dbData.rows[0].sender_id) {
+                    res.json({
+                        buttonText: "Cancel Friend Request"
+                    });
+                } else if (loggedInUserId == dbData.rows[0].receiver_id) {
+                    res.json({
+                        buttonText: "Accept Friend Request"
+                    });
+                }
+            }
+        })
+        .catch(err => {
+            console.log("Err in gettin Initial Status: ", err);
+        });
+});
+
+// FIXME:
+app.post("/send-friend-request/:id", (req, res) => {
+    console.log(
+        "Post/send friend request params.id rew.session, req.body:",
+        req.params.id,
+        req.session.userId,
+        req.body
+    );
+    const loggedInUserId = req.session.userId;
+    const otherUserId = req.params.id;
+
+    db.createFriendship(loggedInUserId, otherUserId)
+        .then(data => {
+            console.log("Data after sending FriendREquest: ", data);
+        })
+        .catch(err => {
+            console.log("Err in /send-friend-request: ", err);
         });
 });
 

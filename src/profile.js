@@ -1,6 +1,7 @@
 import React from "react";
 import Profilepic from "./profilepic";
 import BioEditor from "./bioeditor";
+import FriendButton from "./friendbutton";
 
 export default function Profile(props) {
     return (
@@ -10,6 +11,7 @@ export default function Profile(props) {
                 pictureUrl={props.pictureUrl}
                 updateProfileUrl={props.updateProfileUrl}
             />
+
             <div className="profile-wrapper">
                 <h1 className="profile-welcome">
                     Welcome, Unicorn-<span>{props.first}</span>{" "}
