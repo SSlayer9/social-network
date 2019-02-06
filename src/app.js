@@ -8,7 +8,7 @@ import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
 import BioEditor from "./BioEditor";
 import { bindActionCreators } from "redux";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -114,6 +114,7 @@ export default class App extends React.Component {
                                 updateProfileUrl={this.updateProfileUrl}
                             />
                         )}
+                        <Redirect path="*" to="/" />
                     </div>
                 </BrowserRouter>
             </div>

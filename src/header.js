@@ -16,6 +16,9 @@ export default function Header(props) {
                     updateProfileUrl={props.updateProfileUrl}
                 />
             </div>
+            <a href="/logout" id="logoutLink">
+                <p>Logout</p>
+            </a>
         </div>
     );
 }

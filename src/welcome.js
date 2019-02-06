@@ -6,19 +6,18 @@ import { HashRouter, Route, Link } from "react-router-dom";
 //this is a function component
 export default function Welcome() {
     return (
-        <div style={{ height: "100vh", width: "100vw" }}>
+        <div>
             <HashRouter>
                 <div className="landing-flexcontainer">
                     <div>
                         <img
-                            style={logoSize}
+                            className="logo-text"
                             src="/assets/unicornsss.png"
                             alt="unicorn logo"
                         />
                         <div className="landing-image-container">
                             <img
                                 className="logo-image"
-                                style={image}
                                 src="/assets/wale-unicorn-shadow.png"
                             />
                         </div>
@@ -31,43 +30,3 @@ export default function Welcome() {
         </div>
     );
 }
-
-const flexContainer = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-};
-const imageSize = {
-    width: "200px",
-    height: "200px"
-};
-const image = {
-    paddingTop: "2rem",
-    maxWidth: "100%",
-    maxHeight: "100%"
-};
-
-const logoSize = {
-    width: "57%",
-    height: "auto"
-};
-
-// const logoAnimation = {
-//     animation: 'logo-float infinite 20s linear'
-// }
-// const float = keyframes`
-// from {
-//     transform: rotate(0deg);
-// }
-// to {
-//     transform: rotate(360deg);
-// }
-
-// // ----------------
-//     const pulse = keyframes`
-//   from {
-//     background-color: #001F3F;
-//   }
-
-//   to {
-//     background-color: #FF4136;

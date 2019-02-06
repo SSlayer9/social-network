@@ -258,7 +258,13 @@ app.post("/accept-friend-request/:id", (req, res) => {
     db.acceptFriendship(loggedInUserId, otherUserId);
 });
 
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome#/login");
+});
+
 // 2 below should come last
+
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
         res.redirect("/");
