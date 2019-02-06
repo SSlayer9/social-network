@@ -1,7 +1,7 @@
 import React from "react";
 
 import App from "./app";
-import Profile from "./profile";
+import Profile from "../profile";
 import Profilepic from "./ProfilePic";
 import BioEditor from "./BioEditor";
 import { shallow } from "enzyme";
@@ -20,3 +20,5 @@ test("bio is there, edit button is rendered", () => {
 
     expect(wrapper.find("p").contains("Edit Bio")).toBe(true);
 });
+
+// Clicking either the "Add" or "Edit" button causes a textarea and a "Save" button to be rendered.

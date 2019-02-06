@@ -32,7 +32,7 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div className="form">
+            <div className="registration-form">
                 <h1>Please log in!</h1>
                 {this.state.error && (
                     <div className="error">

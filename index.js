@@ -211,9 +211,10 @@ app.get("/get-initial-status/:id", (req, res) => {
                 res.json({
                     buttonText: "Make Friend Request"
                 });
+                return;
             }
             // Friend Request Accepted
-            if (dbData.rows[0].accepted) {
+            if (dbData.rows[0].accepted == true) {
                 res.json({
                     buttonText: "Unfriend"
                 });

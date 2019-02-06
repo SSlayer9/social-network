@@ -36,7 +36,10 @@ export default class OtherProfile extends React.Component {
                 <div className="profile">
                     <div className="img-btn-wrapper">
                         <img
-                            src={this.state.pictureUrl}
+                            src={
+                                this.state.pictureUrl ||
+                                "/assets/default-img.png"
+                            }
                             alt={this.state.first}
                         />
 
