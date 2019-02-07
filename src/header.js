@@ -1,5 +1,6 @@
 import React from "react";
 import Profilepic from "./ProfilePic";
+import { BrowserRouter, Link } from "react-router-dom";
 
 export default function Header(props) {
     return (
@@ -16,8 +17,9 @@ export default function Header(props) {
                     updateProfileUrl={props.updateProfileUrl}
                 />
             </div>
-            <a href="/logout" id="logoutLink">
-                <p>Logout</p>
+            <Link to="/friends">Show Friends</Link>
+            <a href="/logout">
+                <p>Log Out</p>
             </a>
         </div>
     );

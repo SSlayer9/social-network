@@ -6,9 +6,10 @@ import Uploader from "./Uploader";
 import Header from "./Header";
 import Profile from "./Profile";
 import OtherProfile from "./OtherProfile";
+import Friends from "./friends";
 import BioEditor from "./BioEditor";
 import { bindActionCreators } from "redux";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -78,46 +79,53 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header
-                    showUploader={this.showUploader}
-                    pictureUrl={this.state.pictureUrl}
-                    updateProfileUrl={this.updateProfileUrl}
-                />
-                <BrowserRouter>
+            <BrowserRouter>
+                <div>
+                    <Header
+                        showUploader={this.showUploader}
+                        pictureUrl={this.state.pictureUrl}
+                        updateProfileUrl={this.updateProfileUrl}
+                    />
                     <div>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <div className="wrapper">
-                                    <Profile
-                                        showUploader={this.showUploader}
-                                        pictureUrl={this.state.pictureUrl}
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        updateProfileUrl={this.updateProfileUrl}
-                                        bio={this.state.bio}
-                                        toggleBioEditor={this.toggleBioEditor}
-                                        bioEditorIsVisible={
-                                            this.state.bioEditorIsVisible
-                                        }
-                                        updateBio={this.updateBio}
-                                    />
-                                </div>
-                            )}
-                        />
-                        <Route path="/user/:id" component={OtherProfile} />
-
-                        {this.state.uploaderIsVisible && (
-                            <Uploader
-                                updateProfileUrl={this.updateProfileUrl}
+                        <Switch>
+                            <Route
+                                exact
+                                path="/"
+                                render={() => (
+                                    <div className="wrapper">
+                                        <Profile
+                                            showUploader={this.showUploader}
+                                            pictureUrl={this.state.pictureUrl}
+                                            first={this.state.first}
+                                            last={this.state.last}
+                                            updateProfileUrl={
+                                                this.updateProfileUrl
+                                            }
+                                            bio={this.state.bio}
+                                            toggleBioEditor={
+                                                this.toggleBioEditor
+                                            }
+                                            bioEditorIsVisible={
+                                                this.state.bioEditorIsVisible
+                                            }
+                                            updateBio={this.updateBio}
+                                        />
+                                    </div>
+                                )}
                             />
-                        )}
-                        <Redirect path="*" to="/" />
+                            <Route path="/user/:id" component={OtherProfile} />
+
+                            {this.state.uploaderIsVisible && (
+                                <Uploader
+                                    updateProfileUrl={this.updateProfileUrl}
+                                />
+                            )}
+                            <Route exact path="/friends" component={Friends} />
+                            <Redirect path="*" to="/" />
+                        </Switch>
                     </div>
-                </BrowserRouter>
-            </div>
+                </div>
+            </BrowserRouter>
         );
     }
 }
