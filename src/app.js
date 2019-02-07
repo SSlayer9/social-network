@@ -1,13 +1,13 @@
 import React from "react";
 import Logo from "./Logo";
-import axios from "./Axios";
-import ProfilePic from "./ProfilePic";
-import Uploader from "./Uploader";
-import Header from "./Header";
-import Profile from "./Profile";
-import OtherProfile from "./OtherProfile";
+import axios from "./axios";
+import ProfilePic from "./profilepic";
+import Uploader from "./uploader";
+import Header from "./header";
+import Profile from "./profile";
+import OtherProfile from "./otherProfile";
 import Friends from "./friends";
-import BioEditor from "./BioEditor";
+import BioEditor from "./bioeditor";
 import { bindActionCreators } from "redux";
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "./Axios";
+import axios from "./axios";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 export default class Registration extends React.Component {

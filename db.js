@@ -95,3 +95,16 @@ module.exports.endFriendship = (loggedInUserId, otherUserId) => {
         [loggedInUserId, otherUserId]
     );
 };
+
+// GET WHOLE LIST FRIENDS AND WANNA-BE FRIENDS
+module.exports.getFriendsAndWannabes = userId => {
+    return db.query(
+        ` SELECT users.id, first, last, url, accepted
+        FROM friendships
+        JOIN users
+        ON (accepted = false AND receiver_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND receiver_id = $1 AND sender_id = users.id)
+        OR (accepted = true AND sender_id = $1 AND receiver_id = users.id)`,
+        [userId]
+    );
+};

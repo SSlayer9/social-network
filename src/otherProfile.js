@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "./Axios";
-import FriendButton from "./FriendButton";
+import axios from "./axios";
+import FriendButton from "./friendbutton";
 
 export default class OtherProfile extends React.Component {
     constructor(props) {

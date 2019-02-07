@@ -1,6 +1,6 @@
 import React from "react";
-import Registration from "./Registration";
-import Login from "./Login";
+import Registration from "./registration";
+import Login from "./login";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 //this is a function component

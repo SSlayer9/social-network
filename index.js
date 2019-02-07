@@ -258,6 +258,17 @@ app.post("/accept-friend-request/:id", (req, res) => {
     db.acceptFriendship(loggedInUserId, otherUserId);
 });
 
+app.get("/friends-and-wannabes", (req, res) => {
+    console.log("req happening?? ");
+    const userId = req.session.userId;
+    db.getFriendsAndWannabes(userId).then(data => {
+        console.log("Data from wholeFriendlist", data);
+        res.json({
+            friends: data.rows
+        });
+    });
+});
+
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome#/login");
@@ -281,6 +292,7 @@ app.get("*", function(req, res) {
     }
 });
 
+//SERVER
 app.listen(8080, function() {
     ca.rainbow("Yo, I'm listening on Port 8080!");
 });

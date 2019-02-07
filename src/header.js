@@ -1,5 +1,5 @@
 import React from "react";
-import Profilepic from "./ProfilePic";
+import Profilepic from "./profilepic";
 import { BrowserRouter, Link } from "react-router-dom";
 
 export default function Header(props) {
