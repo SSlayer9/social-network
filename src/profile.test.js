@@ -22,7 +22,7 @@ test("bio is there, edit button is rendered", () => {
 });
 
 // Clicking either the "Add" or "Edit" button causes a textarea and a "Save" button to be rendered.
-
+// Passed Test, but its NOT CORRECT! REDO THIS TEST!!
 test("clicking add bio button shows textarea and save button", () => {
     const clickFn = jest.fn();
 

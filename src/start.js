@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import Welcome from "./Welcome";
 import App from "./App";
 
+const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(reduxPromise))
+);
+
 let component;
 
 if (location.pathname == "/welcome") {
