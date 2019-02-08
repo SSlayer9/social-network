@@ -10,7 +10,7 @@ body {
     align-items: center;
     color: #9c79cc;
     padding: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 main {
     margin: 0 auto;

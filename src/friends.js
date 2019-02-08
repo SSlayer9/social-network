@@ -7,34 +7,68 @@ import {
 import { connect } from "react-redux";
 
 class Friends extends React.Component {
+    // constructor(props) {
+    //     super (props);
+    // }
+
     componentDidMount() {
         this.props.dispatch(receiveFriendsAndWannabes());
     }
 
-    TODO: // chekc this render function!!!!!!!!!!! NOT WORKING!
+    // TODO: // chekc this render function!!!!!!!!!!! NOT WORKING!
     render() {
-        return  (
+        const { wannabes, friends } = this.props;
+        if (!wannabes) {
+            return null;
+        }
+        console.log("Wannabelist:", wannabes);
 
-     const wannabeList = wannabes.map((wannabe => {
-         <li key={wannabe.id}>{wannabe.first} {wannabe.last}</li>
-             <img src={wannabe.url} />
-             <button onCLick={e => this.props.dispatch(acceptFriendship(wannabe.id))}> Accept</button>
-        }))
+        const wannabeList = (
+            <div>
+                {wannabes.map(wannabe => (
+                    <div>
+                        <li key={wannabe.id}>
+                            {wannabe.first} {wannabe.last}
+                        </li>
+                        <img src={wannabe.url} />
+                        <button
+                            onCLick={e =>
+                                this.props.dispatch(
+                                    acceptFriendship(wannabe.id)
+                                )
+                            }
+                        >
+                            {" "}
+                            Accept
+                        </button>
+                    </div>
+                ))}
+                ;
+            </div>
+        );
 
-        const friends = friends.map((friend => {
-                 <div key={friend.id}>
-                     <img src={friend.url}></img>
-                     <p> {friend.first} {friend.last}</p>
-                     <button onClick={e => this.props.dispatch(endFriendship(friend.id))}></button>
-                 </div>
-             }))
+        const acceptedFriends = friends.map(friend => {
+            <div key={friend.id}>
+                <img src={friend.url} />
+                <p>
+                    {" "}
+                    {friend.first} {friend.last}
+                </p>
+                <button
+                    onClick={e => this.props.dispatch(endFriendship(friend.id))}
+                >
+                    End Friendship
+                </button>
+            </div>;
+        });
 
-        )
-    
-        
-        
-    <p>Hi, I am the friends page!</p>;
-    
+        return (
+            <div>
+                {!friends.length && <div>Nobody is hot!</div>}
+                {wannabes.length && wannabeList}
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = function(state) {
