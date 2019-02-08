@@ -24,32 +24,30 @@ export default class App extends React.Component {
         this.updateBio = this.updateBio.bind(this);
     }
 
-    componentDidMount() {
-        axios.get("/user").then(
-            function(response) {
-                const id = response.data[0].id;
-                const first = response.data[0].first;
-                const last = response.data[0].last;
-                const pictureUrl = response.data[0].url;
+    async componentDidMount() {
+        try {
+            const response = await axios.get("/user");
+            const { id, first, last, url } = response.data[0];
+            this.setState({
+                first,
+                last,
+                pictureUrl: url,
+                id
+            });
+        } catch (err) {
+            console.log("Err componentDitMount App.js: ", err);
+        }
 
-                this.setState({
-                    id,
-                    first,
-                    last,
-                    pictureUrl
-                });
-            }.bind(this)
-        );
+        try {
+            const response = await axios.get("/userbio");
+            const bio = response.data;
 
-        axios.get("/userbio").then(
-            function(response) {
-                const bio = response.data;
-
-                this.setState({
-                    bio
-                });
-            }.bind(this)
-        );
+            this.setState({
+                bio
+            });
+        } catch (err) {
+            console.log("Err in Mount /userbio :", err);
+        }
     }
 
     showUploader() {
