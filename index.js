@@ -95,7 +95,7 @@ app.post("/welcome/register", function(req, res) {
                 });
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             });
     }
 });
@@ -126,7 +126,7 @@ app.post("/welcome/login", function(req, res) {
                 }
             })
             .catch(err => {
-                console.log("Error app.post/login: ", err);
+                console.log(err.message);
             });
     });
 });
@@ -139,7 +139,7 @@ app.get("/user", (req, res) => {
             res.json(dbData.rows);
         })
         .catch(err => {
-            console.log("err in post upload:", err);
+            console.log(err.message);
         });
 });
 
@@ -153,7 +153,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             res.json(rows[0]);
         })
         .catch(err => {
-            console.log("err in post upload:", err);
+            console.log(err.message);
         });
 });
 
@@ -166,7 +166,7 @@ app.get("/userbio", (req, res) => {
             res.json(savedBio);
         })
         .catch(err => {
-            console.log("Err in get /userbio: ", err);
+            console.log(err.message);
         });
 });
 
@@ -181,7 +181,7 @@ app.post("/userbio", (req, res) => {
             res.json(updatedBio);
         })
         .catch(err => {
-            console.log("Err in post/userbio: ", err);
+            console.log(err.message);
         });
 });
 
@@ -196,12 +196,11 @@ app.get("/user/:id/info", (req, res) => {
     }
     db.getOtherUserInfo(targetId)
         .then(data => {
-            // console.log("Get Other User:", data);
             const OtherUserInfo = data.rows[0];
             res.json(OtherUserInfo);
         })
         .catch(err => {
-            console.log("Err in get/user/id/info: ", err);
+            console.log(err.message);
             res.json({
                 redirectTo: "/"
             });
@@ -242,7 +241,7 @@ app.get("/get-initial-status/:id", (req, res) => {
             }
         })
         .catch(err => {
-            console.log("Err in gettin Initial Status: ", err);
+            console.log(err.message);
         });
 });
 
@@ -273,8 +272,9 @@ app.post("/accept-friend-request/:id", (req, res) => {
     const otherUserId = req.params.id;
 
     db.acceptFriendship(loggedInUserId, otherUserId).then(data => {
-        console.log("Am I htere???", data);
-        res.json(data);
+        res.json({
+            success: true
+        });
     });
 });
 
