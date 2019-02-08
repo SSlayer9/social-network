@@ -27,7 +27,7 @@ export default class OtherProfile extends React.Component {
                 });
             }
         } catch (err) {
-            console.log("Err in Mount fn otherProfile: ", err);
+            console.log(err.message);
         }
     }
     render() {

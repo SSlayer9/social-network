@@ -15,7 +15,6 @@ export default class Registration extends React.Component {
         this[e.target.name] = e.target.value;
     }
     async submit() {
-        console.log("this is in axios registration:", this);
         try {
             let response = await axios.post("/welcome/register", {
                 first: this.first,
@@ -32,11 +31,10 @@ export default class Registration extends React.Component {
                 });
             }
         } catch (err) {
-            console.log("Err in Registration Submit: ", err);
+            console.log(err.message);
         }
     }
     render() {
-        console.log("I am rendering");
         return (
             <div className="registration-form">
                 {this.state.error && (
