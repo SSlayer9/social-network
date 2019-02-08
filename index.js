@@ -245,10 +245,15 @@ app.post("/send-friend-request/:id", (req, res) => {
 });
 
 app.post("/cancel-friend-request/:id", (req, res) => {
+    console.log("Cancel Friend Running!");
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
 
-    db.endFriendship(loggedInUserId, otherUserId);
+    db.endFriendship(loggedInUserId, otherUserId).then(data => {
+        res.json({
+            success: true
+        });
+    });
 });
 
 app.post("/accept-friend-request/:id", (req, res) => {
@@ -256,7 +261,7 @@ app.post("/accept-friend-request/:id", (req, res) => {
     const otherUserId = req.params.id;
 
     db.acceptFriendship(loggedInUserId, otherUserId).then(data => {
-        console.log("Am I htere???");
+        console.log("Am I htere???", data);
         res.json(data);
     });
 });

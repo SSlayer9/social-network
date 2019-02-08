@@ -85,6 +85,7 @@ export default class App extends React.Component {
                         showUploader={this.showUploader}
                         pictureUrl={this.state.pictureUrl}
                         updateProfileUrl={this.updateProfileUrl}
+                        first={this.state.first}
                     />
                     <div>
                         {/* <Switch> */}

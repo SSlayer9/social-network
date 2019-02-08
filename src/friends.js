@@ -64,7 +64,7 @@ class Friends extends React.Component {
                                 this.props.dispatch(endFriendship(friend.id))
                             }
                         >
-                            End Friendship
+                            Unfriend
                         </button>
                     </div>
                 ))}

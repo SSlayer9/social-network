@@ -17,3 +17,12 @@ export async function acceptFriendship(wannabeId) {
         acceptedFriend: wannabeId
     };
 }
+
+export async function endFriendship(friendId) {
+    const response = await axios.post("/cancel-friend-request/" + friendId);
+    console.log("delete Friend response: ", response);
+    return {
+        type: "END_FRIENDSHIP",
+        deletedFriend: friendId
+    };
+}

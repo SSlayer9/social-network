@@ -9,6 +9,12 @@ export default function Header(props) {
                 {" "}
                 <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
+            <div className="nav-bar">
+                <Link to="/friends">Show Friends</Link>
+                <a href="/logout">
+                    <p>Log Out</p>
+                </a>
+            </div>
 
             <div className="header-pic-container">
                 <Profilepic
@@ -16,11 +22,8 @@ export default function Header(props) {
                     pictureUrl={props.pictureUrl}
                     updateProfileUrl={props.updateProfileUrl}
                 />
+                <Link to="/">{props.first}</Link>
             </div>
-            <Link to="/friends">Show Friends</Link>
-            <a href="/logout">
-                <p>Log Out</p>
-            </a>
         </div>
     );
 }

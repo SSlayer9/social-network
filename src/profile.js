@@ -6,11 +6,13 @@ import BioEditor from "./bioeditor";
 export default function Profile(props) {
     return (
         <div className="profile">
-            <ProfilePic
-                showUploader={props.showUploader}
-                pictureUrl={props.pictureUrl}
-                updateProfileUrl={props.updateProfileUrl}
-            />
+            <div className="profile-img-container">
+                <ProfilePic
+                    showUploader={props.showUploader}
+                    pictureUrl={props.pictureUrl}
+                    updateProfileUrl={props.updateProfileUrl}
+                />
+            </div>
 
             <div className="profile-wrapper">
                 <h1 className="profile-welcome">

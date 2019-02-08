@@ -16,9 +16,15 @@ export default function(state = {}, action) {
             })
         };
     }
+
+    if (action.type == "END_FRIENDSHIP") {
+        console.log("endFrindship", action.deletedFriend);
+        state = {
+            ...state,
+            friendslist: state.friendslist.filter(friend => {
+                return friend.id !== action.deletedFriend;
+            })
+        };
+    }
     return state;
 }
-
-// 'ACCEPT_FRIEND_REQUEST'
-
-// 'UNFRIEND'
