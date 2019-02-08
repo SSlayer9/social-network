@@ -39,7 +39,7 @@ export default class FriendButton extends React.Component {
             });
         }
         if (this.state.buttonText == "Accept Friend Request") {
-            axios.post("/accept-friend-request" + this.props.otherUserId);
+            axios.post("/accept-friend-request/" + this.props.otherUserId);
             this.setState({
                 buttonText: "Unfriend"
             });

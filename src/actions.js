@@ -1,24 +1,19 @@
 import axios from "./axios";
 
 export async function receiveFriendsAndWannabes() {
-    const friendsAndWannabes = await axios.get("/friends-and-wannabes");
-    console.log("fw: ", friendsAndWannabes);
+    const response = await axios.get("/friends-and-wannabes");
+    console.log("fw: ", response);
     return {
         type: "RECEIVE_FRIENDS_WANNABES",
-        friendsAndWannabes: friendsAndWannabes.data.friends
+        friendsAndWannabes: response.data.friends
     };
 }
 
-// export async function acceptFriendship(??? getOtherUserInfo.Id) {
-//     const friends = await axios.post('accept-friend-request/:id')
-//     type: 'ACCEPT_FRIENDSHIP',
-//     ???: ???   FIXME:
-// }
-
-// export async function endFriendship(???otherUserId??) {
-//     const unfriends = await axios.post('/cancel-friend-request/:id')
-//     return {
-//         type: 'END_FRIENDSHIP',
-//         ???: ????  FIXME:
-//     }
-// }
+export async function acceptFriendship(wannabeId) {
+    const response = await axios.post("/accept-friend-request/" + wannabeId);
+    console.log("New Friend Id:", response);
+    return {
+        type: "ACCEPT_FRIENDSHIP",
+        acceptedFriend: wannabeId
+    };
+}

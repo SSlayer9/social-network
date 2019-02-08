@@ -24,14 +24,17 @@ class Friends extends React.Component {
 
         const wannabeList = (
             <div>
+                <h2>
+                    These {wannabes.length} Unicorns want to be your friends:
+                </h2>
                 {wannabes.map(wannabe => (
-                    <div>
-                        <li key={wannabe.id}>
+                    <div key={wannabe.id} className="wannabe-container">
+                        <img className="wannabe-img" src={wannabe.url} />
+                        <p>
                             {wannabe.first} {wannabe.last}
-                        </li>
-                        <img src={wannabe.url} />
+                        </p>
                         <button
-                            onCLick={e =>
+                            onClick={e =>
                                 this.props.dispatch(
                                     acceptFriendship(wannabe.id)
                                 )
@@ -42,29 +45,37 @@ class Friends extends React.Component {
                         </button>
                     </div>
                 ))}
-                ;
             </div>
         );
 
-        const acceptedFriends = friends.map(friend => {
-            <div key={friend.id}>
-                <img src={friend.url} />
-                <p>
-                    {" "}
-                    {friend.first} {friend.last}
-                </p>
-                <button
-                    onClick={e => this.props.dispatch(endFriendship(friend.id))}
-                >
-                    End Friendship
-                </button>
-            </div>;
-        });
+        const acceptedFriends = (
+            <div>
+                <h2>These {friends.length} Unicorns are Your Friends</h2>
+
+                {friends.map(friend => (
+                    <div key={friend.id} className="wannabe-container">
+                        <img src={friend.url} className="wannabe-img" />
+                        <p>
+                            {" "}
+                            {friend.first} {friend.last}
+                        </p>
+                        <button
+                            onClick={() =>
+                                this.props.dispatch(endFriendship(friend.id))
+                            }
+                        >
+                            End Friendship
+                        </button>
+                    </div>
+                ))}
+            </div>
+        );
 
         return (
             <div>
-                {!friends.length && <div>Nobody is hot!</div>}
+                {!friends.length && <div>You have No Friends.</div>}
                 {wannabes.length && wannabeList}
+                {friends.length && acceptedFriends}
             </div>
         );
     }
@@ -75,7 +86,7 @@ const mapStateToProps = function(state) {
     return {
         wannabes:
             state.friendslist &&
-            state.friendslist.filter(friend => friend.accepted == false),
+            state.friendslist.filter(wannabe => wannabe.accepted == false),
 
         friends:
             state.friendslist &&
@@ -83,3 +94,17 @@ const mapStateToProps = function(state) {
     };
 };
 export default connect(mapStateToProps)(Friends);
+
+// -----Vorlage
+// friends.map(friend => {
+//     <div key={friend.id}>
+//         <img src={friend.url} />
+//         <p>
+//             {" "}
+//             {friend.first} {friend.last}
+//         </p>
+//         <button onClick={e => this.props.dispatch(endFriendship(friend.id))}>
+//             End Friendship
+//         </button>
+//     </div>;
+// });

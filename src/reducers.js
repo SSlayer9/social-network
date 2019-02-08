@@ -1,10 +1,20 @@
 export default function(state = {}, action) {
     if (action.type == "RECEIVE_FRIENDS_WANNABES") {
-        const IDKyet = {
+        state = { ...state, friendslist: action.friendsAndWannabes };
+    }
+
+    if (action.type == "ACCEPT_FRIENDSHIP") {
+        console.log("accepted friend:", action.acceptedFriend);
+        state = {
             ...state,
-            friendslist: action.friendsAndWannabes
+            friendslist: state.friendslist.map(friend => {
+                if (friend.id == action.acceptedFriend) {
+                    return { ...friend, accepted: true };
+                } else {
+                    return friend;
+                }
+            })
         };
-        return IDKyet;
     }
     return state;
 }

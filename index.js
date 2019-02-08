@@ -255,14 +255,16 @@ app.post("/accept-friend-request/:id", (req, res) => {
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
 
-    db.acceptFriendship(loggedInUserId, otherUserId);
+    db.acceptFriendship(loggedInUserId, otherUserId).then(data => {
+        console.log("Am I htere???");
+        res.json(data);
+    });
 });
 
 app.get("/friends-and-wannabes", (req, res) => {
-    console.log("req happening?? ");
     const userId = req.session.userId;
     db.getFriendsAndWannabes(userId).then(data => {
-        console.log("Data from wholeFriendlist", data);
+        // console.log("Data from wholeFriendlist", data);
         res.json({
             friends: data.rows
         });
