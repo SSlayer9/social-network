@@ -11,18 +11,17 @@ export default class FriendButton extends React.Component {
     }
 
     //get the current status of friendship when profile loads
-    componentDidMount() {
-        axios
-            .get("/get-initial-status/" + this.props.otherUserId)
-            .then(response => {
-                console.log("friendship mounts response: ", response);
-                this.setState({
-                    buttonText: response.data.buttonText
-                });
-            })
-            .catch(err => {
-                console.log("Err axios get-inital-status:", err);
+    async componentDidMount() {
+        try {
+            const response = await axios.get(
+                "/get-initial-status/" + this.props.otherUserId
+            );
+            this.setState({
+                buttonText: response.data.buttonText
             });
+        } catch (err) {
+            console.log(err.message);
+        }
     }
     // change the status of friendship after clicking button
     updateFriendship() {

@@ -17,20 +17,16 @@ export default class BioEditor extends React.Component {
         });
     }
 
-    submitBio() {
-        axios
-            .post("/userbio", {
+    async submitBio() {
+        try {
+            const response = await axios.post("/userbio", {
                 bio: this.state.bio
-            })
-            .then(
-                function(response) {
-                    this.props.updateBio(response.data);
-                    this.props.toggleBioEditor();
-                }.bind(this)
-            )
-            .catch(err => {
-                console.log("Error in BioUpload: ", err);
             });
+            this.props.updateBio(response.data);
+            this.props.toggleBioEditor();
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     render() {

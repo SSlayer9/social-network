@@ -58,6 +58,8 @@ if (process.env.NODE_ENV != "production") {
 }
 
 // ROUTES    ######################################################
+
+//WELCOME REGISTER
 app.post("/welcome/register", function(req, res) {
     console.log("Req.body post register", req.body);
     if (
@@ -98,6 +100,7 @@ app.post("/welcome/register", function(req, res) {
     }
 });
 
+//WELCOME LOGIN
 app.post("/welcome/login", function(req, res) {
     const email = req.body.email;
 
@@ -128,6 +131,7 @@ app.post("/welcome/login", function(req, res) {
     });
 });
 
+// GET USERS PROFILE INFO
 app.get("/user", (req, res) => {
     const id = req.session.userId;
     db.getUserInfo(id)
@@ -139,6 +143,7 @@ app.get("/user", (req, res) => {
         });
 });
 
+// ADD PROFILE PIC
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const fullUrl = config.s3Url + req.file.filename;
     const userId = req.session.userId;
@@ -152,6 +157,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
+// GET USER BIO
 app.get("/userbio", (req, res) => {
     const id = req.session.userId;
     db.getUserBio(id)
@@ -164,6 +170,7 @@ app.get("/userbio", (req, res) => {
         });
 });
 
+// SAVE USER BIO
 app.post("/userbio", (req, res) => {
     const bio = req.body.bio;
     const id = req.session.userId;
@@ -178,6 +185,7 @@ app.post("/userbio", (req, res) => {
         });
 });
 
+// SHOW OTHER USER PROFILE
 app.get("/user/:id/info", (req, res) => {
     const userId = req.session.userId;
     const targetId = req.params.id;
@@ -200,6 +208,7 @@ app.get("/user/:id/info", (req, res) => {
         });
 });
 
+// GET FRIENDSHIP STATUS
 app.get("/get-initial-status/:id", (req, res) => {
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
@@ -237,6 +246,7 @@ app.get("/get-initial-status/:id", (req, res) => {
         });
 });
 
+// SEND FRIEND REQUEST
 app.post("/send-friend-request/:id", (req, res) => {
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
@@ -244,6 +254,7 @@ app.post("/send-friend-request/:id", (req, res) => {
     db.createFriendship(loggedInUserId, otherUserId);
 });
 
+// CANCEL FRIEND REQUEST
 app.post("/cancel-friend-request/:id", (req, res) => {
     console.log("Cancel Friend Running!");
     const loggedInUserId = req.session.userId;
@@ -256,6 +267,7 @@ app.post("/cancel-friend-request/:id", (req, res) => {
     });
 });
 
+// ACCEPT FRIEND REQUEST
 app.post("/accept-friend-request/:id", (req, res) => {
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
@@ -266,6 +278,7 @@ app.post("/accept-friend-request/:id", (req, res) => {
     });
 });
 
+// SHOW FRIENDS AND PENDING FRIENDS REQUESTS
 app.get("/friends-and-wannabes", (req, res) => {
     const userId = req.session.userId;
     db.getFriendsAndWannabes(userId).then(data => {
@@ -276,6 +289,7 @@ app.get("/friends-and-wannabes", (req, res) => {
     });
 });
 
+//LOGOUT
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome#/login");

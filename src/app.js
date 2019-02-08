@@ -35,7 +35,7 @@ export default class App extends React.Component {
                 id
             });
         } catch (err) {
-            console.log("Err componentDitMount App.js: ", err);
+            console.log(err.message);
         }
 
         try {
@@ -46,7 +46,7 @@ export default class App extends React.Component {
                 bio
             });
         } catch (err) {
-            console.log("Err in Mount /userbio :", err);
+            console.log(err.message);
         }
     }
 
