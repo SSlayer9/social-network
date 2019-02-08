@@ -15,7 +15,6 @@ class Friends extends React.Component {
         this.props.dispatch(receiveFriendsAndWannabes());
     }
 
-    // TODO: // chekc this render function!!!!!!!!!!! NOT WORKING!
     render() {
         const { wannabes, friends } = this.props;
         if (!wannabes) {

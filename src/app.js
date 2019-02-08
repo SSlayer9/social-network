@@ -8,7 +8,7 @@ import Profile from "./profile";
 import OtherProfile from "./otherProfile";
 import Friends from "./friends";
 import BioEditor from "./bioeditor";
-import { bindActionCreators } from "redux";
+
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -87,42 +87,38 @@ export default class App extends React.Component {
                         updateProfileUrl={this.updateProfileUrl}
                     />
                     <div>
-                        <Switch>
-                            <Route
-                                exact
-                                path="/"
-                                render={() => (
-                                    <div className="wrapper">
-                                        <Profile
-                                            showUploader={this.showUploader}
-                                            pictureUrl={this.state.pictureUrl}
-                                            first={this.state.first}
-                                            last={this.state.last}
-                                            updateProfileUrl={
-                                                this.updateProfileUrl
-                                            }
-                                            bio={this.state.bio}
-                                            toggleBioEditor={
-                                                this.toggleBioEditor
-                                            }
-                                            bioEditorIsVisible={
-                                                this.state.bioEditorIsVisible
-                                            }
-                                            updateBio={this.updateBio}
-                                        />
-                                    </div>
-                                )}
-                            />
-                            <Route path="/user/:id" component={OtherProfile} />
-
-                            {this.state.uploaderIsVisible && (
-                                <Uploader
-                                    updateProfileUrl={this.updateProfileUrl}
-                                />
+                        {/* <Switch> */}
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <div className="wrapper">
+                                    <Profile
+                                        showUploader={this.showUploader}
+                                        pictureUrl={this.state.pictureUrl}
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        updateProfileUrl={this.updateProfileUrl}
+                                        bio={this.state.bio}
+                                        toggleBioEditor={this.toggleBioEditor}
+                                        bioEditorIsVisible={
+                                            this.state.bioEditorIsVisible
+                                        }
+                                        updateBio={this.updateBio}
+                                    />
+                                </div>
                             )}
-                            <Route exact path="/friends" component={Friends} />
-                            <Redirect path="*" to="/" />
-                        </Switch>
+                        />
+                        <Route path="/user/:id" component={OtherProfile} />
+
+                        {this.state.uploaderIsVisible && (
+                            <Uploader
+                                updateProfileUrl={this.updateProfileUrl}
+                            />
+                        )}
+                        <Route exact path="/friends" component={Friends} />
+                        {/* <Redirect path="*" to="/" /> */}
+                        {/* </Switch> */}
                     </div>
                 </div>
             </BrowserRouter>

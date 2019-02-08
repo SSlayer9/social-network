@@ -166,7 +166,8 @@ label:after {
 
 .header img {
     width: 50px;
-    object-fit: cover;
+    max-height: 57px;
+    object-fit: contain;
     cursor: pointer;
 }
 .header #header-logo {
