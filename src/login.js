@@ -13,22 +13,23 @@ export default class Login extends React.Component {
         //this function grabs the value of the input-fields
         this[e.target.name] = e.target.value;
     }
-    submit() {
-        axios
-            .post("/welcome/login", {
+    async submit() {
+        try {
+            const response = await axios.post("/welcome/login", {
                 email: this.email,
                 password: this.password
-            })
-            .then(({ data }) => {
-                console.log("Data in axios login", data);
-                if (data.success) {
-                    location.replace("/");
-                } else {
-                    this.setState({
-                        error: true
-                    });
-                }
             });
+            console.log("Response in Login: ", response);
+            if (response.data.success) {
+                location.replace("/");
+            } else {
+                this.setState({
+                    error: true
+                });
+            }
+        } catch (err) {
+            console.log(err.message);
+        }
     }
     render() {
         return (

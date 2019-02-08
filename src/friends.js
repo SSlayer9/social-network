@@ -7,10 +7,6 @@ import {
 import { connect } from "react-redux";
 
 class Friends extends React.Component {
-    // constructor(props) {
-    //     super (props);
-    // }
-
     componentDidMount() {
         this.props.dispatch(receiveFriendsAndWannabes());
     }
@@ -73,7 +69,7 @@ class Friends extends React.Component {
 
         return (
             <div>
-                {!friends.length && <div>You have No Friends.</div>}
+                {!friends.length && <div>You have No Friends </div>}
                 {wannabes.length && wannabeList}
                 {friends.length && acceptedFriends}
             </div>
@@ -94,17 +90,3 @@ const mapStateToProps = function(state) {
     };
 };
 export default connect(mapStateToProps)(Friends);
-
-// -----Vorlage
-// friends.map(friend => {
-//     <div key={friend.id}>
-//         <img src={friend.url} />
-//         <p>
-//             {" "}
-//             {friend.first} {friend.last}
-//         </p>
-//         <button onClick={e => this.props.dispatch(endFriendship(friend.id))}>
-//             End Friendship
-//         </button>
-//     </div>;
-// });
