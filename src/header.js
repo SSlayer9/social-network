@@ -14,16 +14,43 @@ export default function Header(props) {
                 <a href="/logout">
                     <p>Log Out</p>
                 </a>
+
+                <div className="header-pic-container">
+                    <Profilepic
+                        showUploader={props.showUploader}
+                        pictureUrl={props.pictureUrl}
+                        updateProfileUrl={props.updateProfileUrl}
+                        id="header-img"
+                    />
+                </div>
+                {/* <Link to="/">{props.first}</Link> */}
             </div>
 
-            <div className="header-pic-container">
+            {/* <div className="header-pic-container">
                 <Profilepic
                     showUploader={props.showUploader}
                     pictureUrl={props.pictureUrl}
                     updateProfileUrl={props.updateProfileUrl}
+                    id="header-img"
                 />
                 <Link to="/">{props.first}</Link>
-            </div>
+            </div> */}
         </div>
     );
+}
+
+{
+    /* <nav>
+    <ul>
+        <li>
+            <Link to="/friends">Friends</Link>
+        </li>
+        <li>
+            <a href="/logout">Log Out</a>
+        </li>
+        <li>
+            <Link to="/">Home</Link>
+        </li>
+    </ul>
+</nav>; */
 }

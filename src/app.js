@@ -84,21 +84,21 @@ export default class App extends React.Component {
                             exact
                             path="/"
                             render={() => (
-                                <div className="wrapper">
-                                    <Profile
-                                        showUploader={this.showUploader}
-                                        pictureUrl={this.state.pictureUrl}
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        updateProfileUrl={this.updateProfileUrl}
-                                        bio={this.state.bio}
-                                        toggleBioEditor={this.toggleBioEditor}
-                                        bioEditorIsVisible={
-                                            this.state.bioEditorIsVisible
-                                        }
-                                        updateBio={this.updateBio}
-                                    />
-                                </div>
+                                // <div className="wrapper">
+                                <Profile
+                                    showUploader={this.showUploader}
+                                    pictureUrl={this.state.pictureUrl}
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    updateProfileUrl={this.updateProfileUrl}
+                                    bio={this.state.bio}
+                                    toggleBioEditor={this.toggleBioEditor}
+                                    bioEditorIsVisible={
+                                        this.state.bioEditorIsVisible
+                                    }
+                                    updateBio={this.updateBio}
+                                />
+                                // </div>
                             )}
                         />
                         <Route path="/user/:id" component={OtherProfile} />

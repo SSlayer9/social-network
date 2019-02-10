@@ -15,11 +15,11 @@ export default function Profile(props) {
             </div>
 
             <div className="profile-wrapper">
-                <h1 className="profile-welcome">
-                    Welcome, Unicorn-<span>{props.first}</span>{" "}
-                </h1>
+                <p className="capitalze">
+                    {props.first} {props.last}
+                </p>
 
-                {props.bio && <p className="about-padding">About you:</p>}
+                {/* {props.bio && <b>ABOUT</b>} */}
             </div>
 
             <BioEditor

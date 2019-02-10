@@ -46,11 +46,15 @@ export default class BioEditor extends React.Component {
             <div>
                 {this.props.bio && !this.state.bioEditorIsVisible && (
                     <div className="bio-container">
-                        <p>{this.props.bio}</p>
-                        <button onClick={this.toggleBioEditor}>
+                        <b>ABOUT</b>
+                        <p className="edit-btn" onClick={this.toggleBioEditor}>
+                            Edit Bio
+                        </p>
+                        <p className="bio-text">{this.props.bio}</p>
+                        {/* <button onClick={this.toggleBioEditor}>
                             {" "}
                             Edit Bio
-                        </button>
+                        </button> */}
                     </div>
                 )}
 
@@ -65,6 +69,8 @@ export default class BioEditor extends React.Component {
                             type="text"
                             defaultValue={this.state.bio}
                             onChange={this.handleChange}
+                            rows="15"
+                            cols="25"
                         />
 
                         <button onClick={this.submitBio}>Save Bio</button>
