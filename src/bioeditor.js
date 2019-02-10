@@ -13,6 +13,10 @@ export default class BioEditor extends React.Component {
         this.submitBio = this.submitBio.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({ bio: nextProps.bio });
+    }
+
     handleChange(e) {
         this.setState({
             bio: e.target.value
@@ -59,7 +63,7 @@ export default class BioEditor extends React.Component {
                         <textarea
                             name="bio"
                             type="text"
-                            value={this.state.bio}
+                            defaultValue={this.state.bio}
                             onChange={this.handleChange}
                         />
 
