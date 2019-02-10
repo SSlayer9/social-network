@@ -15,12 +15,11 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploaderIsVisible: false,
-            bioEditorIsVisible: false
+            uploaderIsVisible: false
         };
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
-        this.toggleBioEditor = this.toggleBioEditor.bind(this);
+
         this.updateBio = this.updateBio.bind(this);
     }
 
@@ -60,12 +59,6 @@ export default class App extends React.Component {
         this.setState({
             pictureUrl: url,
             uploaderIsVisible: false
-        });
-    }
-
-    toggleBioEditor() {
-        this.setState({
-            bioEditorIsVisible: !this.state.bioEditorIsVisible
         });
     }
 

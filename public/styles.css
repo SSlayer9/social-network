@@ -207,6 +207,8 @@ a {
     margin-right: 2rem;
     width: 70%;
     max-width: 270px;
+    max-height: 250px;
+    overflow: hidden;
     /* width: 200px; */
     /* height: 250px; */
 }
@@ -242,13 +244,13 @@ a {
 .bio-area {
     flex-grow: 2;
 }
-textarea {
+/* textarea {
     width: 80%;
     height: 150px;
     font-size: 1.15rem;
     padding: 0.5rem 0.8rem;
     color: #7e48ca;
-}
+} */
 
 .upload-modal {
     display: flex;

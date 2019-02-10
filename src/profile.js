@@ -20,35 +20,13 @@ export default function Profile(props) {
                 </h1>
 
                 {props.bio && <p className="about-padding">About you:</p>}
-
-                {props.bio && (
-                    <div className="bio-container">
-                        <p className="bio-area"> {props.bio} </p>
-                        <p
-                            onClick={props.toggleBioEditor}
-                            className="to-editor-link"
-                        >
-                            Edit Bio
-                        </p>
-                    </div>
-                )}
-
-                {!props.bio && (
-                    <p
-                        onClick={props.toggleBioEditor}
-                        className="to-editor-link"
-                    >
-                        Add Your Bio Now
-                    </p>
-                )}
             </div>
-            {props.bioEditorIsVisible && (
-                <BioEditor
-                    bio={props.bio}
-                    updateBio={props.updateBio}
-                    toggleBioEditor={props.toggleBioEditor}
-                />
-            )}
+
+            <BioEditor
+                bio={props.bio}
+                updateBio={props.updateBio}
+                toggleBioEditor={props.toggleBioEditor}
+            />
         </div>
     );
 }

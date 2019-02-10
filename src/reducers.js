@@ -26,5 +26,6 @@ export default function(state = {}, action) {
             })
         };
     }
+    // if none of the above conditionals apply, return initial state
     return state;
 }
