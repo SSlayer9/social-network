@@ -108,3 +108,11 @@ module.exports.getFriendsAndWannabes = userId => {
         [userId]
     );
 };
+
+// GET USERS WHO ARE ONLINE
+module.exports.getUsersByIds = arrayOfIds => {
+    return db.query(
+        ` SELECT id, first, last, url FROM users WHERE id = ANY ($1)`,
+        [arrayOfIds]
+    );
+};

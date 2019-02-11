@@ -67,6 +67,8 @@ a {
     text-transform: capitalize;
 }
 
+/* LANDING PAGE */
+
 .landing-flexcontainer {
     text-align: center;
     /* align-items: center; */
@@ -111,6 +113,8 @@ a {
     }
 }
 
+/* REGISTER / LOGIN */
+
 .registration-form {
     display: flex;
     flex-direction: column;
@@ -148,6 +152,8 @@ a {
     margin-top: 10px;
 }
 
+/* HEADER */
+
 .header {
     display: flex;
     /* justify-content: space-between; */
@@ -168,7 +174,7 @@ a {
     margin-right: 1rem;
     width: 25%;
     justify-content: space-around;
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
 .header-pic-container {
     width: 40px;
@@ -200,12 +206,17 @@ a {
     object-fit: contain;
     cursor: pointer;
 }
+
+/* PROFILE */
+
 .profile {
+    margin-top: 1.8rem;
     flex-direction: column;
     height: 90vh;
     width: 21%;
     display: flex;
-    border: 2px solid blue;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2);
+    /* border: 2px solid blue; */
     /* justify-content: space-evenly; */
 }
 .img-btn-wrapper {
@@ -235,6 +246,9 @@ a {
     object-fit: cover;
     cursor: pointer;
 }
+
+/* BIOEDITOR */
+
 .to-editor-link {
     text-decoration: underline;
     cursor: pointer;
@@ -274,6 +288,8 @@ textarea {
     color: #7e48ca;
 }
 
+/* UPLOADER */
+
 .upload-modal {
     display: flex;
     flex-direction: column;
@@ -286,7 +302,7 @@ textarea {
     left: 10%;
     background: #f1f0f3;
 }
-.bio-editor-modal {
+/* .bio-editor-modal {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -297,7 +313,7 @@ textarea {
     top: 27%;
     left: 10%;
     background: #f1f0f3;
-}
+} */
 .wannabe-container {
     display: inline-block;
     /* margin-right: 1.5rem; */
