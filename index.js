@@ -331,24 +331,34 @@ server.listen(8080, function() {
 let onlineUsers = {};
 
 io.on("connection", function(socket) {
-    if (!socket.request.session || !socket.request.session.user) {
+    if (!socket.request.session || !socket.request.session.userId) {
         return socket.disconnect(true);
     }
+    const userId = socket.request.session.userId;
 
-    console.log(`socket with the id ${socket.id} is now connected`);
-
-    console.log("socket request.sessions:", socket.request.session);
-
-    onlineUsers[socket.id] = socket.request.session.userId;
-    console.log("onlineUsers: ", onlineUsers);
+    onlineUsers[socket.id] = userId;
+    // console.log("onlineUsers: ", onlineUsers);
 
     let userIds = Object.values(onlineUsers);
     console.log("userIds: ", userIds);
 
-    db.getUsersByIds(userIds).then(data => {
-        console.log("Data get usersByID: ", data);
-        socket.broadcast.emit("onlineUsers", data.rows);
-    });
+    db.getUsersByIds(userIds)
+        .then(data => {
+            console.log("Data get usersByID: ", data);
+            socket.emit(
+                "onlineUsers",
+                data.rows.filter(i => {
+                    if (i.id == userId) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                })
+            );
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
 
     socket.on("disconnect", function() {
         io.sockets.emit("userLeft", {});

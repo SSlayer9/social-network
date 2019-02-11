@@ -26,6 +26,14 @@ export default function(state = {}, action) {
             })
         };
     }
+
+    if (action.type == "ONLINEUSERS") {
+        state = {
+            ...state,
+            onlineUsers: action.onlineUsers
+        };
+    }
+
     // if none of the above conditionals apply, return initial state
     return state;
 }

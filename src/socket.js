@@ -1,5 +1,6 @@
 import * as io from "socket.io-client";
-import { createStore } from "redux";
+
+import { onlineUsers } from "./actions";
 
 let socket;
 
@@ -8,29 +9,19 @@ export function initSocket(store) {
         socket = io.connect();
         //  front end code goes here
         //receives messages FROM Backend
-        socket.on("myFirstEmit", function(message) {
-            console.log("message in socketon:", message);
+
+        // FOR Project
+        socket.on("onlineUsers", function(users) {
+            console.log("user: ", user);
+            store.dispatch(onlineUsers());
         });
 
-        socket.on("myBroadcast", function(payload) {
-            console.log("my Broadcast:", payload);
-        });
+        // socket.on("userJoines", user => {
+        //     store.disptch(otherActionCreatername());
+        // });
 
-        socket.on("EveryoneReceivesthis", function(data) {
-            console.log("emit to All:", data);
-        });
-
-        // FORPRoject
-        socket.on("onlineUsers", function(data) {
-            createStore.dispatch(nameActionCreatorFunctio());
-        });
-
-        socket.on("userJoindes", user => {
-            store.disptch(otherActionCreatername());
-        });
-
-        socket.on("userLeft", user => {
-            store.dispatch(actionCreator());
-        });
+        // socket.on("userLeft", user => {
+        //     store.dispatch(actionCreator());
+        // });
     }
 }

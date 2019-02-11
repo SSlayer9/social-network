@@ -5,6 +5,7 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Header from "./header";
 import Profile from "./profile";
+import OnlineUsers from "./onlineUsers";
 import OtherProfile from "./otherProfile";
 import Friends from "./friends";
 import BioEditor from "./bioeditor";
@@ -111,6 +112,8 @@ export default class App extends React.Component {
                         <Route exact path="/friends" component={Friends} />
                         {/* <Redirect path="*" to="/" /> */}
                         {/* </Switch> */}
+
+                        <Route exact path="/online" component={OnlineUsers} />
                     </div>
                 </div>
             </BrowserRouter>

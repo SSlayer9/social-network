@@ -26,3 +26,20 @@ export async function endFriendship(friendId) {
         deletedFriend: friendId
     };
 }
+
+export function onlineUsers(onlineUsers) {
+    console.log("onlineUsers Action running: ", onlineUsers);
+    return {
+        type: "ONLINEUSERS",
+        onlineUsers
+    };
+}
+
+// VORLAGE----------------------------------------------
+// export function onlineUsers(onlineUsers) {
+//     // console.log("onlineUsers action fired:", onlineUsers);
+//     return {
+//         type: "ONLINEUSERS",
+//         onlineUsers
+//     };
+// }

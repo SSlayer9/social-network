@@ -25,7 +25,10 @@ class Friends extends React.Component {
                 </h2>
                 {wannabes.map(wannabe => (
                     <div key={wannabe.id} className="wannabe-container">
-                        <img className="wannabe-img" src={wannabe.url} />
+                        <img
+                            className="wannabe-img"
+                            src={wannabe.url || "/assets/default-img.png"}
+                        />
                         <p>
                             {wannabe.first} {wannabe.last}
                         </p>
