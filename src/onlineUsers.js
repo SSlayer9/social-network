@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { onlineUsers } from "./actions";
+import { allOnlineUsers } from "./actions";
 
 class OnlineUsers extends React.Component {
     constructor() {
@@ -8,7 +8,7 @@ class OnlineUsers extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.dispatch(onlineUsers());
+        this.props.dispatch(allOnlineUsers());
     }
 
     render() {
@@ -36,7 +36,7 @@ class OnlineUsers extends React.Component {
                 <div>Hi i am OnlineUsers, what the heck!!!!</div>
                 <div>
                     {!onlineUsers.length && <h3>Nobody is online</h3>}
-                    {!!onlineUsers.length && listOnlineUsers}
+                    {onlineUsers && listOnlineUsers}
                 </div>
             </div>
         );

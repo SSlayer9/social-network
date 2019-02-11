@@ -27,10 +27,27 @@ export default function(state = {}, action) {
         };
     }
 
-    if (action.type == "ONLINEUSERS") {
+    if (action.type == "ONLINE_USERS") {
         state = {
             ...state,
             onlineUsers: action.onlineUsers
+        };
+        return state;
+    }
+
+    if (action.type == "USER_WHO_JOINED") {
+        state = {
+            ...state,
+            onlineUsers: state.onlineUsers.concat(action.joinedUser)
+        };
+    }
+
+    if (action.type == "USER_WHO_LEFT") {
+        state = {
+            ...state,
+            onlineUsers: state.onlineUsers.filter(
+                item => item.id != action.userWhoLeft
+            )
         };
     }
 

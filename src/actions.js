@@ -27,19 +27,26 @@ export async function endFriendship(friendId) {
     };
 }
 
-export function onlineUsers(onlineUsers) {
-    console.log("onlineUsers Action running: ", onlineUsers);
+// SOCKET.IO ONLINER USERS
+
+export function allOnlineUsers(onlineUsers) {
+    console.log("AllOnlineUsers Action running: ", onlineUsers);
     return {
-        type: "ONLINEUSERS",
+        type: "ONLINE_USERS",
         onlineUsers
     };
 }
 
-// VORLAGE----------------------------------------------
-// export function onlineUsers(onlineUsers) {
-//     // console.log("onlineUsers action fired:", onlineUsers);
-//     return {
-//         type: "ONLINEUSERS",
-//         onlineUsers
-//     };
-// }
+export function userWhoJoined(joinedUser) {
+    return {
+        type: "USER_WHO_JOINED",
+        joinedUser
+    };
+}
+
+export function userWhoLeft(leftUser) {
+    return {
+        type: "USER_WHO_LEFT",
+        leftUser
+    };
+}

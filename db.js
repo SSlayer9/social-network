@@ -116,3 +116,10 @@ module.exports.getUsersByIds = arrayOfIds => {
         [arrayOfIds]
     );
 };
+
+// USER WHO JOINED
+module.exports.getJoinedUser = userId => {
+    return db.query(`SELECT id,first,last,url FROM users WHERE id = $1`, [
+        userId
+    ]);
+};

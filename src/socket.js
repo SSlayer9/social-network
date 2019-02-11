@@ -1,27 +1,25 @@
 import * as io from "socket.io-client";
 
-import { onlineUsers } from "./actions";
+import { allOnlineUsers, userWhoJoined, userWhoLeft } from "./actions";
 
 let socket;
 
 export function initSocket(store) {
     if (!socket) {
         socket = io.connect();
-        //  front end code goes here
-        //receives messages FROM Backend
 
-        // FOR Project
-        socket.on("onlineUsers", function(users) {
-            console.log("user: ", user);
-            store.dispatch(onlineUsers());
+        //receiving now messages FROM Backend
+
+        socket.on("onlineUsers", function(message) {
+            store.dispatch(allOnlineUsers(message));
         });
 
-        // socket.on("userJoines", user => {
-        //     store.disptch(otherActionCreatername());
-        // });
+        socket.on("userJoinded", function(message) {
+            store.dispatch(userWhoJoined(message));
+        });
 
-        // socket.on("userLeft", user => {
-        //     store.dispatch(actionCreator());
-        // });
+        socket.on("userLeft", function(message) {
+            store.dispatch(userWhoLeft(message));
+        });
     }
 }

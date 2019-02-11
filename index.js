@@ -326,41 +326,55 @@ app.get("*", function(req, res) {
 server.listen(8080, function() {
     ca.rainbow("Yo, I'm listening on Port 8080!");
 });
+// --------------------------------/ socket.io CODE / --------------------------------
 
 //tracks whos CURRENTLY ONLINE
-let onlineUsers = {};
+let onlineUsers = [];
 
 io.on("connection", function(socket) {
     if (!socket.request.session || !socket.request.session.userId) {
         return socket.disconnect(true);
     }
+    // ---------- LOGS TO SEE WHATS GOING ON  ---------------------
+    console.log(`socket with the id ${socket.id} is now connected`);
+
+    // ------------------------------------------------------------
+
+    const socketId = socket.id;
     const userId = socket.request.session.userId;
-
+    // --------------------- LOGS TO SEE WHATS GOING ON -----------------------------
     onlineUsers[socket.id] = userId;
-    // console.log("onlineUsers: ", onlineUsers);
-
+    console.log("onlineUsers: ", onlineUsers);
+    console.log("onlineUsers[socket.id]: ", onlineUsers[socket.id]);
+    // -------------------------------------------------------------------------------
     let userIds = Object.values(onlineUsers);
     console.log("userIds: ", userIds);
 
+    // -------------------------- / SOCKET EVENTS / ------------------------------------------
+
     db.getUsersByIds(userIds)
         .then(data => {
-            console.log("Data get usersByID: ", data);
-            socket.emit(
-                "onlineUsers",
-                data.rows.filter(i => {
-                    if (i.id == userId) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                })
-            );
+            console.log("Data get usersByID: ", data.rows);
+            socket.emit("onlineUsers", data.rows);
         })
         .catch(err => {
             console.log(err.message);
         });
 
+    //USER JOINS
+    if (userIds.filter(id => id == userId).length == 1) {
+        db.getJoinedUser(userId)
+            .then(data => {
+                socket.broadcast.emit("userJoined", data.rows[0]);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    }
+
+    // USER LEAVES
     socket.on("disconnect", function() {
+        delete onlineUsers[socketId];
         io.sockets.emit("userLeft", {});
     });
 });
