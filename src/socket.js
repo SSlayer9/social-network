@@ -23,3 +23,7 @@ export function initSocket(store) {
         });
     }
 }
+
+// socket.on("onlineUsers", user => {
+//     store.dispatch();
+// });

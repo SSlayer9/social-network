@@ -69,7 +69,7 @@ export default class BioEditor extends React.Component {
                             type="text"
                             defaultValue={this.state.bio}
                             onChange={this.handleChange}
-                            rows="15"
+                            rows="7"
                             cols="25"
                         />
 

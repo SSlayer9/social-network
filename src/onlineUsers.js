@@ -20,13 +20,15 @@ class OnlineUsers extends React.Component {
         const listOnlineUsers = (
             <div>
                 {onlineUsers.map(user => {
-                    <div key={user.id}>
-                        <img src={user.url || "/assets/default-img.png"} />
-                        <p>
-                            {user.first}
-                            {user.last}
-                        </p>
-                    </div>;
+                    return (
+                        <div key={user.id}>
+                            <img src={user.url || "/assets/default-img.png"} />
+                            <p>
+                                {user.first}
+                                {user.last}
+                            </p>
+                        </div>
+                    );
                 })}
             </div>
         );
@@ -44,6 +46,7 @@ class OnlineUsers extends React.Component {
 }
 
 const mapStateToProps = function(state) {
+    console.log("state in onlineusers-comp:", state);
     return {
         onlineUsers: state.onlineUsers
     };

@@ -329,7 +329,7 @@ server.listen(8080, function() {
 // --------------------------------/ socket.io CODE / --------------------------------
 
 //tracks whos CURRENTLY ONLINE
-let onlineUsers = [];
+let onlineUsers = {};
 
 io.on("connection", function(socket) {
     if (!socket.request.session || !socket.request.session.userId) {
@@ -377,4 +377,15 @@ io.on("connection", function(socket) {
         delete onlineUsers[socketId];
         io.sockets.emit("userLeft", {});
     });
+
+    // NEW FOR PART9
+    // socket.emit("chatMessages", messages);
+    // // receives a chatmessage from a single clinet
+    // socket.on("chatMessage", async text => {
+    //     const user = await db.getUsersByIds(socket.request.session.userId);
+    //     io.emit("chatMessage", {
+    //         ...user,
+    //         text
+    //     });
+    // });
 });

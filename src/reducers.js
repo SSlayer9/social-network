@@ -26,6 +26,7 @@ export default function(state = {}, action) {
             })
         };
     }
+    // ---------- SOCKET REDUCERS ------------------
 
     if (action.type == "ONLINE_USERS") {
         state = {
