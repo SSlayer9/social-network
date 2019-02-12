@@ -355,7 +355,9 @@ io.on("connection", function(socket) {
     db.getUsersByIds(userIds)
         .then(data => {
             console.log("Data get usersByID: ", data.rows);
-            filteredRows = data.rows.filter((singleObject) => singleObject.id != userId)
+            filteredRows = data.rows.filter(
+                singleObject => singleObject.id != userId
+            );
             // socket.emit("onlineUsers", data.rows);
             socket.emit("onlineUsers", filteredRows);
         })
@@ -376,18 +378,36 @@ io.on("connection", function(socket) {
 
     // USER LEAVES
     socket.on("disconnect", function() {
+        let userWhoLeft = onlineUsers[socket.id];
         delete onlineUsers[socketId];
-        io.sockets.emit("userLeft", {});
+        io.sockets.emit("userLeft", {
+            id: userWhoLeft
+        });
     });
 
-    // NEW FOR PART9
-    // socket.emit("chatMessages", messages);
-    // // receives a chatmessage from a single clinet
-    // socket.on("chatMessage", async text => {
-    //     const user = await db.getUsersByIds(socket.request.session.userId);
-    //     io.emit("chatMessage", {
-    //         ...user,
-    //         text
-    //     });
-    // });
-});
+    // USER CHAT MESSAGES
+
+    db.getMessages()
+        .then(data => {
+            socket.emit("allMessages", {
+                messages: data.rows.reverse()
+            });
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
+
+    // receives a chatmessage from a single clinet
+    socket.on("singleMessage", function(message) {
+        db.insertMessage(message, userId)
+            .then(data => {
+                //here noch aufbereiten die data
+                io.emit("chatMessage", {
+                    message: data.rows[0]
+                });
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    });
+}); //closes io.on 'connection'

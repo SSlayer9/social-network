@@ -6,8 +6,18 @@ import { Link } from 'react-router-dom';
 class OnlineUsers extends React.Component {
     constructor() {
         super();
+        // this.state = {
+        //     showOnlineUser : false
+        // };
+        // this.toggleOnlineUser = this.toggleOnlineUser.bind(this)
     
     }
+
+    // toggleOnlineUser() {
+    //     this.setState({
+    //         showOnlineUser : !this.state.showOnlineUser
+    //     })
+    // }
 
     render() {
         const { onlineUsers } = this.props;
@@ -15,7 +25,6 @@ class OnlineUsers extends React.Component {
             return null;
         }
 
-        let userUrl = onlineUsers.id
         const listOnlineUsers = (
             
             <div className="list-online-users">
@@ -43,7 +52,6 @@ class OnlineUsers extends React.Component {
 console.log('listOnlineUser: ', listOnlineUsers);
         return (
             <div>
-                <div>Hi i am OnlineUsers, what the heck!!!!</div>
                 <div>
                     {!onlineUsers.length && <h3>Nobody is online</h3>}
                     {onlineUsers && listOnlineUsers}

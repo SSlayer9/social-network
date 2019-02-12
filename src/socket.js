@@ -14,12 +14,20 @@ export function initSocket(store) {
             store.dispatch(allOnlineUsers(message));
         });
 
-        socket.on("userJoinded", function(message) {
+        socket.on("userJoined", function(message) {
             store.dispatch(userWhoJoined(message));
         });
 
         socket.on("userLeft", function(message) {
             store.dispatch(userWhoLeft(message));
+        });
+
+        socket.on("allMessages", function(message) {
+            store.dispatch(showMessages(message));
+        });
+
+        socket.on("singleMessage", function(message) {
+            store.dispatch(showNewMessage(message));
         });
     }
 }

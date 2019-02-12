@@ -116,6 +116,7 @@ export default class App extends React.Component {
                         {/* </Switch> */}
 
                         <Route exact path="/online" component={OnlineUsers} />
+                        
                     </div>
                 </div>
             </BrowserRouter>

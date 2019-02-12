@@ -50,3 +50,17 @@ export function userWhoLeft(leftUser) {
         leftUser
     };
 }
+
+export function showMessages(messages) {
+    return {
+        type: "SHOW_RECENT_MESSAGES",
+        recentMessages: messages
+    };
+}
+
+export function showNewMessage(message) {
+    return {
+        type: "SHOW_MESSAGE",
+        message
+    };
+}

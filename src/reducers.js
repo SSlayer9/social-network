@@ -52,6 +52,22 @@ export default function(state = {}, action) {
         };
     }
 
+    // CHAT MESSAGES
+
+    if (action.type == "SHOW_RECENT_MESSAGES") {
+        state = {
+            ...state,
+            recentMessages: action.recentMessages
+        };
+    }
+
+    if (action.type == "SHOW_MESSAGE") {
+        state = {
+            ...state,
+            messages: [...state.messages, action.message]
+        };
+    }
+
     // if none of the above conditionals apply, return initial state
     return state;
 }

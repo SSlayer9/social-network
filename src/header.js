@@ -1,5 +1,6 @@
 import React from "react";
 import Profilepic from "./profilepic";
+import OnlineUsers from './onlineUsers';
 
 import { BrowserRouter, Link } from "react-router-dom";
 
@@ -12,6 +13,7 @@ export default function Header(props) {
             </div>
             <div className="nav-bar">
                 <Link to="/online">Now Online</Link>
+                {/* <p onClick= {props.toggleOnlineUser} > Now Online</p> */}
                 <Link to="/friends">Show Friends</Link>
                 <a href="/logout">
                     <p>Log Out</p>
