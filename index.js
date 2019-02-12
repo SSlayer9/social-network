@@ -355,7 +355,9 @@ io.on("connection", function(socket) {
     db.getUsersByIds(userIds)
         .then(data => {
             console.log("Data get usersByID: ", data.rows);
-            socket.emit("onlineUsers", data.rows);
+            filteredRows = data.rows.filter((singleObject) => singleObject.id != userId)
+            // socket.emit("onlineUsers", data.rows);
+            socket.emit("onlineUsers", filteredRows);
         })
         .catch(err => {
             console.log(err.message);

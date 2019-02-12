@@ -1,5 +1,6 @@
 import React from "react";
 import Profilepic from "./profilepic";
+
 import { BrowserRouter, Link } from "react-router-dom";
 
 export default function Header(props) {
@@ -17,12 +18,14 @@ export default function Header(props) {
                 </a>
 
                 <div className="header-pic-container">
+                < Link to='/'>
                     <Profilepic
                         showUploader={props.showUploader}
                         pictureUrl={props.pictureUrl}
                         updateProfileUrl={props.updateProfileUrl}
                         id="header-img"
                     />
+                    </Link>
                 </div>
                 {/* <Link to="/">{props.first}</Link> */}
             </div>

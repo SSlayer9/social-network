@@ -6,6 +6,7 @@
 body {
     /* background: url(./assets/background-img.jpg) no-repeat center center; */
     display: flex;
+
     /* height: 100vh; */
     align-items: center;
     color: #9c79cc;
@@ -185,8 +186,12 @@ a {
     /* float: right; */
 }
 .header-pic-container img {
-    width: 100%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    /* width: 100%; */
     border-radius: 50%;
+    cursor: pointer;
 }
 
 #header-img {
@@ -330,31 +335,47 @@ textarea {
 
 /* ONLINE-USERS */
 .list-online-users {
+    text-align: center;
+    margin-right: 50px;
     width: 12%;
     float: right;
-    border: 2px solid blue;
+    box-shadow: 10px 0 10px rgba(0,0,0,.2),
+                -10px 0 10px rgba(0,0,0,.2);
+    /* border: 2px solid blue; */
+}
+.list-online-users::before {
+    content: "ONLINE NOW";
+    text-align: center;
 }
 
 .online-user-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: 2px solid green;
+    margin-top: .8rem;
+    /* align-items: center; */
+    /* border: 2px solid green; */
 }
+
+
 .card-image-container {
+    align-self: center;
     overflow: hidden;
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 .card-image {
-    width: 100%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* width: 100%; */
     /* border-radius: 50%; */
 }
 .card-text{
    
 }
 .circle {
+    float: left;
     width: 10px;
     height: 10px;
     background-color: #12b912;

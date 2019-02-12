@@ -19,7 +19,6 @@ export default function Profile(props) {
                     {props.first} {props.last}
                 </p>
 
-                {/* {props.bio && <b>ABOUT</b>} */}
             </div>
 
             <BioEditor

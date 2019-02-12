@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { allOnlineUsers } from "./actions";
+import { Link } from 'react-router-dom';
 
 class OnlineUsers extends React.Component {
     constructor() {
         super();
+    
     }
 
     render() {
@@ -13,16 +15,19 @@ class OnlineUsers extends React.Component {
             return null;
         }
 
+        let userUrl = onlineUsers.id
         const listOnlineUsers = (
+            
             <div className="list-online-users">
                 {onlineUsers.map(user => {
+                    let url = user.id
                     return (
                         <div key={user.id} className="online-user-card">
                             <div className="card-image-container">
-                                <img
+                               <Link to={`/user/${user.id}`} > <img
                                     src={user.url || "/assets/default-img.png"}
-                                    className="card-image"
-                                />
+                                    className="card-image"/> 
+                               </Link>
                             </div>
 
                             <p className="card-text">
@@ -35,7 +40,7 @@ class OnlineUsers extends React.Component {
                 })}
             </div>
         );
-
+console.log('listOnlineUser: ', listOnlineUsers);
         return (
             <div>
                 <div>Hi i am OnlineUsers, what the heck!!!!</div>

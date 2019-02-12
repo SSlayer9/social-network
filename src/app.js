@@ -17,11 +17,13 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             uploaderIsVisible: false
+            
         };
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
 
         this.updateBio = this.updateBio.bind(this);
+
     }
 
     async componentDidMount() {
