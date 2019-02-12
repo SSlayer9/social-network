@@ -10,6 +10,7 @@ export default function Header(props) {
                 <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
             <div className="nav-bar">
+                <Link to="/online">Now Online</Link>
                 <Link to="/friends">Show Friends</Link>
                 <a href="/logout">
                     <p>Log Out</p>
@@ -25,16 +26,6 @@ export default function Header(props) {
                 </div>
                 {/* <Link to="/">{props.first}</Link> */}
             </div>
-
-            {/* <div className="header-pic-container">
-                <Profilepic
-                    showUploader={props.showUploader}
-                    pictureUrl={props.pictureUrl}
-                    updateProfileUrl={props.updateProfileUrl}
-                    id="header-img"
-                />
-                <Link to="/">{props.first}</Link>
-            </div> */}
         </div>
     );
 }

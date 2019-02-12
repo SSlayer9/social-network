@@ -7,10 +7,6 @@ class OnlineUsers extends React.Component {
         super();
     }
 
-    componentDidMount() {
-        this.props.dispatch(allOnlineUsers());
-    }
-
     render() {
         const { onlineUsers } = this.props;
         if (!onlineUsers) {
@@ -18,13 +14,20 @@ class OnlineUsers extends React.Component {
         }
 
         const listOnlineUsers = (
-            <div>
+            <div className="list-online-users">
                 {onlineUsers.map(user => {
                     return (
-                        <div key={user.id}>
-                            <img src={user.url || "/assets/default-img.png"} />
-                            <p>
-                                {user.first}
+                        <div key={user.id} className="online-user-card">
+                            <div className="card-image-container">
+                                <img
+                                    src={user.url || "/assets/default-img.png"}
+                                    className="card-image"
+                                />
+                            </div>
+
+                            <p className="card-text">
+                            <div className='circle'/>
+                                {user.first} {''}
                                 {user.last}
                             </p>
                         </div>

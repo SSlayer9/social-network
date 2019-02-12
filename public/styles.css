@@ -172,7 +172,7 @@ a {
     display: flex;
     align-items: flex-end;
     margin-right: 1rem;
-    width: 25%;
+    width: 35%;
     justify-content: space-around;
     /* border: 2px solid green; */
 }
@@ -327,3 +327,39 @@ textarea {
     height: 100px;
     object-fit: cover;
 }
+
+/* ONLINE-USERS */
+.list-online-users {
+    width: 12%;
+    float: right;
+    border: 2px solid blue;
+}
+
+.online-user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid green;
+}
+.card-image-container {
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.card-image {
+    width: 100%;
+    /* border-radius: 50%; */
+}
+.card-text{
+   
+}
+.circle {
+    width: 10px;
+    height: 10px;
+    background-color: #12b912;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 7px;
+}
+
