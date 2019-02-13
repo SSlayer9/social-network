@@ -33,23 +33,23 @@ export default class OtherProfile extends React.Component {
     render() {
         return (
             <div className="wrapper">
-                <div className="profile">
-                    <div className="img-btn-wrapper">
+                <div className="other-profile">
+                    <div className="other-profile-img-wrapper">
                         <img
                             src={
                                 this.state.pictureUrl ||
                                 "/assets/default-img.png"
                             }
                             alt={this.state.first}
+                            className="other-profile-image"
                         />
-
                         <FriendButton
                             otherUserId={this.props.match.params.id}
                         />
                     </div>
 
-                    <div className="profile-wrapper">
-                        <h1 className="profile-welcome">
+                    <div className="other-profile-wrapper">
+                        <h1 className="other-profile-welcome">
                             {this.state.first}-Unicorn {this.state.last}
                         </h1>
                         <p className="about-padding">About me:</p>

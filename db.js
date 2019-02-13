@@ -125,7 +125,7 @@ module.exports.getJoinedUser = userId => {
 };
 
 // INSERT MESSAGE
-module.export.insertMessage = (message, userId) => {
+module.exports.insertMessage = (message, userId) => {
     return db.query(
         `INSERT INTO chats (messages, user_id) VALUES ($1,$2) RETURNING *`,
         [message, userId]
@@ -133,9 +133,9 @@ module.export.insertMessage = (message, userId) => {
 };
 
 // GET LAST 10 MESSAGES
-module.export.getMessages = () => {
+module.exports.getMessages = () => {
     return db.query(
-        `SELECT chat.id, chat.messages, chat.created_at, users.first, users.last, users.url
+        `SELECT chats.id, chats.messages, chats.created_at, users.first, users.last, users.url
         FROM chats
         JOIN users
         ON users.id = user_id

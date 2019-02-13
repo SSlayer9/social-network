@@ -9,6 +9,7 @@ import OnlineUsers from "./onlineUsers";
 import OtherProfile from "./otherProfile";
 import Friends from "./friends";
 import BioEditor from "./bioeditor";
+import Chat from "./chat";
 
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
@@ -16,14 +17,17 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploaderIsVisible: false
-            
+            uploaderIsVisible: false,
+            first: "",
+            last: "",
+            pictureUrl: "",
+            id: "",
+            bio: ""
         };
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
 
         this.updateBio = this.updateBio.bind(this);
-
     }
 
     async componentDidMount() {
@@ -116,10 +120,18 @@ export default class App extends React.Component {
                         {/* </Switch> */}
 
                         <Route exact path="/online" component={OnlineUsers} />
-                        
+
+                        <Route exact path="/chat" component={Chat} />
                     </div>
                 </div>
             </BrowserRouter>
         );
     }
 }
+
+// name = { this.state.firstName }
+// last = { this.state.lastName }
+// picture = { this.state.profilePic }
+// key = { props.match.url }
+// match = { props.match }
+// history = { props.history }

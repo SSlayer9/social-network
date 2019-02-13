@@ -1,6 +1,12 @@
 import * as io from "socket.io-client";
 
-import { allOnlineUsers, userWhoJoined, userWhoLeft } from "./actions";
+import {
+    allOnlineUsers,
+    userWhoJoined,
+    userWhoLeft,
+    showMessages,
+    showNewMessage
+} from "./actions";
 
 let socket;
 

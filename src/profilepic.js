@@ -11,5 +11,5 @@ export default function ProfilePic(props) {
     }
     let name = props.first + "" + props.last;
 
-    return <img src={url} alt={name} onClick={props.showUploader} />;
+    return <img src={url} alt={name} onDoubleClick={props.showUploader} />;
 }
