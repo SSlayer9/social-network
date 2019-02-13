@@ -28,16 +28,14 @@ export function initSocket(store) {
             store.dispatch(userWhoLeft(message));
         });
 
-        socket.on("allMessages", function(message) {
-            store.dispatch(showMessages(message));
+        socket.on("allMessages", function(data) {
+            store.dispatch(showMessages(data.messages));
         });
 
-        socket.on("singleMessage", function(message) {
-            store.dispatch(showNewMessage(message));
+        socket.on("chatMessage", function(data) {
+            console.log("happeining in socket.js", data.message);
+            store.dispatch(showNewMessage(data.message));
         });
     }
+    return socket;
 }
-
-// socket.on("onlineUsers", user => {
-//     store.dispatch();
-// });

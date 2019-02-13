@@ -399,7 +399,8 @@ io.on("connection", function(socket) {
 
     // receives a chatmessage from a single clinet
     socket.on("singleMessage", function(message) {
-        db.insertMessage(message, userId)
+        console.log("Happening in Server Chat", message);
+        db.insertMessage(message.message, userId)
             .then(data => {
                 //here noch aufbereiten die data
                 io.emit("chatMessage", {

@@ -54,7 +54,7 @@ export function userWhoLeft(leftUser) {
 export function showMessages(messages) {
     return {
         type: "SHOW_RECENT_MESSAGES",
-        recentMessages: messages
+        messages
     };
 }
 

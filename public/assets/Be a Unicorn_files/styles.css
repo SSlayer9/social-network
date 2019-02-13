@@ -403,17 +403,3 @@ textarea {
 }
 
 /* CHAT */
-.chat-window {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin: 0 auto;
-    max-width: 33rem;
-    height: 20rem;
-    border: 2px solid rgb(168, 163, 163);
-    border-radius: 10px;
-}
-.chat-textarea {
-    width: 100%;
-    padding: 0.5rem;
-}

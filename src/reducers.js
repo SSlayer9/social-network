@@ -55,9 +55,10 @@ export default function(state = {}, action) {
     // CHAT MESSAGES
 
     if (action.type == "SHOW_RECENT_MESSAGES") {
+        var messages = action.messages;
         state = {
             ...state,
-            recentMessages: action.recentMessages
+            messages
         };
     }
 
