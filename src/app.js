@@ -117,21 +117,26 @@ export default class App extends React.Component {
                             )}
                         />
                         <Route path="/user/:id" component={OtherProfile} />
-
                         {this.state.uploaderIsVisible && (
                             <Uploader
                                 updateProfileUrl={this.updateProfileUrl}
                             />
                         )}
-
                         {this.state.showOnlineUser && <OnlineUsers />}
-
-                        <Route exact path="/friends" component={Friends} />
-                        {/* <Redirect path="*" to="/" /> */}
-                        {/* </Switch> */}
-
+                        {/* <Route exact path="/friends" component={Friends} /> */}
+                        <Route
+                            exact
+                            path="/friends"
+                            render={() => (
+                                <Friends
+                                    showOnlineUser={this.state.showOnlineUser}
+                                />
+                            )}
+                        />
+                        {/* // <Redirect path="*" to="/" /> */}
+                        {/* // </Switch> */}
+                        {/* //{" "} */}
                         {/* <Route exact path="/online" component={OnlineUsers} /> */}
-
                         <Route
                             exact
                             path="/chat"

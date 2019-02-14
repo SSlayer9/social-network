@@ -43,11 +43,7 @@ class Chat extends React.Component {
             var chatList = (
                 <div>
                     {messages.map(message => (
-                        <div
-                            key={message.id}
-                            className="message-container"
-                            ref={elem => (this.elem = elem)}
-                        >
+                        <div key={message.id} className="message-container">
                             <img src={message.url} className="chat-image" />
                             <div className="sender-info-flex">
                                 <p className="chat-sender-info">
@@ -64,16 +60,23 @@ class Chat extends React.Component {
 
         return (
             <div>
-                <h1> Chat-Room</h1>
-                <div className="chat-window">
-                    {!!messages.length && chatList}
-                    <textarea
-                        placeholder="Type your Message..."
-                        onChange={this.handleChange}
-                        name="chatBox"
-                        rows="7"
-                        className="chat-textarea"
-                    />
+                <h1 className="chat-heading"> Chat-Room</h1>
+                <div className="chat-wrapper">
+                    <div
+                        className="chat-window"
+                        ref={elem => (this.elem = elem)}
+                    >
+                        {!!messages.length && chatList}
+                    </div>
+                    <div className="">
+                        <textarea
+                            placeholder="Type your Message..."
+                            onChange={this.handleChange}
+                            name="chatBox"
+                            rows="7"
+                            className="chat-textarea"
+                        />
+                    </div>
                     <button onClick={this.submit}>Send</button>
                 </div>
             </div>

@@ -4,9 +4,13 @@ import {
     acceptFriendship,
     endFriendship
 } from "./actions";
+import OnlineUsers from "./onlineUsers";
 import { connect } from "react-redux";
 
 class Friends extends React.Component {
+    constructor() {
+        super();
+    }
     componentDidMount() {
         this.props.dispatch(receiveFriendsAndWannabes());
     }
@@ -72,9 +76,13 @@ class Friends extends React.Component {
 
         return (
             <div>
-                {!friends.length && <div>You have No Friends </div>}
-                {wannabes.length && wannabeList}
-                {friends.length && acceptedFriends}
+                <div className="friends-wrapper">
+                    {!friends.length && <div>You have No Friends </div>}
+                    {!!wannabes.length && wannabeList}
+                    {!!friends.length && acceptedFriends}
+                </div>
+
+                {this.props.showOnlineUser && <OnlineUsers />}
             </div>
         );
     }
