@@ -59,6 +59,7 @@ export function showMessages(messages) {
 }
 
 export function showNewMessage(message) {
+    console.log("message in actions.js:", message);
     return {
         type: "SHOW_MESSAGE",
         message

@@ -33,7 +33,7 @@ export function initSocket(store) {
         });
 
         socket.on("chatMessage", function(data) {
-            console.log("happeining in socket.js", data.message);
+            console.log("happeining in socket.js data", data);
             store.dispatch(showNewMessage(data.message));
         });
     }

@@ -389,6 +389,7 @@ io.on("connection", function(socket) {
 
     db.getMessages()
         .then(data => {
+            console.log("Whats in get Messages?:", data.rows);
             socket.emit("allMessages", {
                 messages: data.rows.reverse()
             });
@@ -402,7 +403,11 @@ io.on("connection", function(socket) {
         console.log("Happening in Server Chat", message);
         db.insertMessage(message.message, userId)
             .then(data => {
-                //here noch aufbereiten die data
+                console.log("Whats in message from DB:", data);
+                data.rows[0].first = message.first;
+                data.rows[0].last = message.last;
+                data.rows[0].url = message.pic;
+                console.log("Added ALL to DataROws: ", data.rows[0]);
                 io.emit("chatMessage", {
                     message: data.rows[0]
                 });

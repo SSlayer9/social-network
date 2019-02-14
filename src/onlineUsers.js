@@ -1,23 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { allOnlineUsers } from "./actions";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class OnlineUsers extends React.Component {
     constructor() {
         super();
-        // this.state = {
-        //     showOnlineUser : false
-        // };
-        // this.toggleOnlineUser = this.toggleOnlineUser.bind(this)
-    
     }
-
-    // toggleOnlineUser() {
-    //     this.setState({
-    //         showOnlineUser : !this.state.showOnlineUser
-    //     })
-    // }
 
     render() {
         const { onlineUsers } = this.props;
@@ -26,22 +15,26 @@ class OnlineUsers extends React.Component {
         }
 
         const listOnlineUsers = (
-            
             <div className="list-online-users">
                 {onlineUsers.map(user => {
-                    let url = user.id
+                    let url = user.id;
                     return (
                         <div key={user.id} className="online-user-card">
                             <div className="card-image-container">
-                               <Link to={`/user/${user.id}`} > <img
-                                    src={user.url || "/assets/default-img.png"}
-                                    className="card-image"/> 
-                               </Link>
+                                <Link to={`/user/${user.id}`}>
+                                    {" "}
+                                    <img
+                                        src={
+                                            user.url ||
+                                            "/assets/default-img.png"
+                                        }
+                                        className="card-image"
+                                    />
+                                </Link>
                             </div>
 
                             <p className="card-text">
-                            <div className='circle'/>
-                                {user.first} {''}
+                                {user.first} {""}
                                 {user.last}
                             </p>
                         </div>
@@ -49,12 +42,12 @@ class OnlineUsers extends React.Component {
                 })}
             </div>
         );
-console.log('listOnlineUser: ', listOnlineUsers);
+        console.log("listOnlineUser: ", listOnlineUsers);
         return (
             <div>
                 <div>
                     {!onlineUsers.length && <h3>Nobody is online</h3>}
-                    {onlineUsers && listOnlineUsers}
+                    {!!onlineUsers && listOnlineUsers}
                 </div>
             </div>
         );

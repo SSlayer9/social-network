@@ -1,6 +1,6 @@
 import React from "react";
 import Profilepic from "./profilepic";
-import OnlineUsers from './onlineUsers';
+import OnlineUsers from "./onlineUsers";
 
 import { BrowserRouter, Link } from "react-router-dom";
 
@@ -12,21 +12,26 @@ export default function Header(props) {
                 <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
             <div className="nav-bar">
-                <Link to="/online">Now Online</Link>
-                {/* <p onClick= {props.toggleOnlineUser} > Now Online</p> */}
-                <Link to="/friends">Show Friends</Link>
-                <a href="/logout">
+                {/* <Link to="/online">Now Online</Link> */}
+                <p onClick={props.toggleOnlineUser} className="link">
+                    {" "}
+                    Now Online
+                </p>
+                <Link to="/friends" className="link">
+                    Show Friends
+                </Link>
+                <a href="/logout" className="link">
                     <p>Log Out</p>
                 </a>
 
                 <div className="header-pic-container">
-                < Link to='/'>
-                    <Profilepic
-                        showUploader={props.showUploader}
-                        pictureUrl={props.pictureUrl}
-                        updateProfileUrl={props.updateProfileUrl}
-                        id="header-img"
-                    />
+                    <Link to="/">
+                        <Profilepic
+                            showUploader={props.showUploader}
+                            pictureUrl={props.pictureUrl}
+                            updateProfileUrl={props.updateProfileUrl}
+                            id="header-img"
+                        />
                     </Link>
                 </div>
                 {/* <Link to="/">{props.first}</Link> */}

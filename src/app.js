@@ -18,6 +18,7 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             uploaderIsVisible: false,
+            showOnlineUser: false,
             first: "",
             last: "",
             pictureUrl: "",
@@ -26,7 +27,7 @@ export default class App extends React.Component {
         };
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
-
+        this.toggleOnlineUser = this.toggleOnlineUser.bind(this);
         this.updateBio = this.updateBio.bind(this);
     }
 
@@ -62,6 +63,12 @@ export default class App extends React.Component {
         });
     }
 
+    toggleOnlineUser() {
+        this.setState({
+            showOnlineUser: !this.state.showOnlineUser
+        });
+    }
+
     updateProfileUrl(url) {
         this.setState({
             pictureUrl: url,
@@ -84,6 +91,7 @@ export default class App extends React.Component {
                         pictureUrl={this.state.pictureUrl}
                         updateProfileUrl={this.updateProfileUrl}
                         first={this.state.first}
+                        toggleOnlineUser={this.toggleOnlineUser}
                     />
                     <div>
                         {/* <Switch> */}
@@ -115,13 +123,26 @@ export default class App extends React.Component {
                                 updateProfileUrl={this.updateProfileUrl}
                             />
                         )}
+
+                        {this.state.showOnlineUser && <OnlineUsers />}
+
                         <Route exact path="/friends" component={Friends} />
                         {/* <Redirect path="*" to="/" /> */}
                         {/* </Switch> */}
 
-                        <Route exact path="/online" component={OnlineUsers} />
+                        {/* <Route exact path="/online" component={OnlineUsers} /> */}
 
-                        <Route exact path="/chat" component={Chat} />
+                        <Route
+                            exact
+                            path="/chat"
+                            render={() => (
+                                <Chat
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    url={this.state.pictureUrl}
+                                />
+                            )}
+                        />
                     </div>
                 </div>
             </BrowserRouter>

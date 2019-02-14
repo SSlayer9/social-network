@@ -22,7 +22,7 @@ class Chat extends React.Component {
             last: this.props.last,
             pic: this.props.url
         });
-        e.target.value = "";
+        document.querySelector(".chat-textarea").value = "";
     }
 
     componentDidUpdate() {
@@ -33,7 +33,9 @@ class Chat extends React.Component {
     }
 
     render() {
+        // console.log("Whats in /chat Props??:", props);
         const { messages } = this.props;
+        console.log("whats in message?:", messages);
 
         if (!messages) {
             return null;
@@ -41,8 +43,19 @@ class Chat extends React.Component {
             var chatList = (
                 <div>
                     {messages.map(message => (
-                        <div key={message.id} className="message-container">
-                            <p> {message.messages} </p>
+                        <div
+                            key={message.id}
+                            className="message-container"
+                            ref={elem => (this.elem = elem)}
+                        >
+                            <img src={message.url} className="chat-image" />
+                            <div className="sender-info-flex">
+                                <p className="chat-sender-info">
+                                    {" "}
+                                    {message.first}
+                                </p>
+                                <p> {message.messages} </p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -51,29 +64,17 @@ class Chat extends React.Component {
 
         return (
             <div>
-                <h1> Hi I am Chat running, what the fudge!!!!</h1>
+                <h1> Chat-Room</h1>
                 <div className="chat-window">
                     {!!messages.length && chatList}
                     <textarea
-                        placeholder="Type your Message"
+                        placeholder="Type your Message..."
                         onChange={this.handleChange}
                         name="chatBox"
                         rows="7"
                         className="chat-textarea"
                     />
                     <button onClick={this.submit}>Send</button>
-                    {/* <button
-                        onClick={() =>
-                            this.socket.emit("singleMessage", {
-                                message: this.chatBox,
-                                first: this.props.first,
-                                last: this.props.last,
-                                pic: this.props.url
-                            })
-                        }
-                    >
-                        Send
-                    </button> */}
                 </div>
             </div>
         );
@@ -88,3 +89,18 @@ const mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps)(Chat);
+
+{
+    /* <button
+    onClick={() =>
+        this.socket.emit("singleMessage", {
+            message: this.chatBox,
+            first: this.props.first,
+            last: this.props.last,
+            pic: this.props.url
+        })
+    }
+>
+    Send
+</button> */
+}

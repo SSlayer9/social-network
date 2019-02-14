@@ -66,6 +66,7 @@ export default function(state = {}, action) {
         state = {
             ...state,
             messages: [...state.messages, action.message]
+            // maybe action.message.messages
         };
     }
 
