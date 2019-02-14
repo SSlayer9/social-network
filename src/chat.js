@@ -44,7 +44,10 @@ class Chat extends React.Component {
                 <div>
                     {messages.map(message => (
                         <div key={message.id} className="message-container">
-                            <img src={message.url} className="chat-image" />
+                            <img
+                                src={message.url || "/assets/default-img.png"}
+                                className="chat-image"
+                            />
                             <div className="sender-info-flex">
                                 <p className="chat-sender-info">
                                     {" "}

@@ -49,10 +49,6 @@ export default class BioEditor extends React.Component {
                         <b>ABOUT</b>
 
                         <p className="bio-text">{this.props.bio}</p>
-                        {/* <button onClick={this.toggleBioEditor}>
-                            {" "}
-                            Edit Bio
-                        </button> */}
 
                         <p className="edit-btn " onClick={this.toggleBioEditor}>
                             Edit Bio
@@ -61,7 +57,9 @@ export default class BioEditor extends React.Component {
                 )}
 
                 {!this.state.bioEditorIsVisible && !this.props.bio && (
-                    <p onClick={this.toggleBioEditor}>Add Bio Now</p>
+                    <p onClick={this.toggleBioEditor} className="edit-btn">
+                        Add Bio Now
+                    </p>
                 )}
 
                 {this.state.bioEditorIsVisible && (

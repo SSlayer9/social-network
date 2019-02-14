@@ -13,7 +13,6 @@ export default function Header(props) {
                 <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
             <div className="nav-bar">
-                {/* <Link to="/online">Now Online</Link> */}
                 <p onClick={props.toggleOnlineUser} className="link">
                     {" "}
                     Now Online

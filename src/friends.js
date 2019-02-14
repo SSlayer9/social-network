@@ -77,7 +77,15 @@ class Friends extends React.Component {
         return (
             <div>
                 <div className="friends-wrapper">
-                    {!friends.length && <div>You have No Friends </div>}
+                    {!friends.length && (
+                        <div className="no-friends">
+                            <p>You Have No Friends</p>
+                            <img
+                                src="/assets/sad-uniwale3.png"
+                                className="sad-uniwale"
+                            />
+                        </div>
+                    )}
                     {!!wannabes.length && wannabeList}
                     {!!friends.length && acceptedFriends}
                 </div>

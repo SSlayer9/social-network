@@ -46,7 +46,9 @@ class OnlineUsers extends React.Component {
         return (
             <div>
                 <div>
-                    {!onlineUsers.length && <h3>Nobody is online</h3>}
+                    {!onlineUsers.length && (
+                        <h3 className="nobody-online">Nobody is online</h3>
+                    )}
                     {!!onlineUsers && listOnlineUsers}
                 </div>
             </div>
