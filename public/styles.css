@@ -217,7 +217,10 @@ a {
 }
 
 /* PROFILE */
-
+.flex-wrapper {
+    display: flex;
+    margin-top: 1.8rem;
+}
 .profile {
     margin-top: 1.8rem;
     flex-direction: column;
@@ -433,4 +436,22 @@ textarea {
 .sender-info-flex {
     display: flex;
     flex-direction: column;
+}
+
+/* WALL */
+.feeds-container {
+    margin-top: 1.8rem;
+    height: 618px;
+    width: 45%;
+    margin-left: 7.5rem;
+    /* background: #c486b6; */
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.comment {
+    border: 1px solid grey;
+    padding: 1.7rem;
+}
+.comment-body {
+    padding: 1rem;
 }

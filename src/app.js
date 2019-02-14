@@ -10,6 +10,7 @@ import OtherProfile from "./otherProfile";
 import Friends from "./friends";
 import BioEditor from "./bioeditor";
 import Chat from "./chat";
+import Wall from "./wall";
 
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
@@ -98,6 +99,7 @@ export default class App extends React.Component {
                         <Route
                             exact
                             path="/"
+                            // component={Wall}
                             render={() => (
                                 // <div className="wrapper">
                                 <Profile
@@ -113,7 +115,6 @@ export default class App extends React.Component {
                                     }
                                     updateBio={this.updateBio}
                                 />
-                                // </div>
                             )}
                         />
                         <Route path="/user/:id" component={OtherProfile} />
