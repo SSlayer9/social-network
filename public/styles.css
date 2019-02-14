@@ -33,9 +33,9 @@ button {
     margin-top: 5px;
     text-decoration: none;
     /* background: #c8eabd; */
-    /* background: #12b912; */
+    background: #12b912;
 
-    background: #ff9e0d;
+    /* background: #ff9e0d; */
     color: #fff;
     cursor: pointer;
     font-size: 1rem;
@@ -296,6 +296,10 @@ a {
     object-fit: cover;
     cursor: pointer;
 }
+.other-profile-img-wrapper {
+    display: flex;
+    flex-direction: column;
+}
 
 /* BIOEDITOR */
 
@@ -366,6 +370,7 @@ textarea {
     width: 100px;
     height: 100px;
     object-fit: cover;
+    object-position: top;
 }
 .no-friends {
     margin: 7rem auto;
@@ -457,8 +462,10 @@ textarea {
 }
 .chat-image {
     margin-right: 0.7rem;
-    /* width: 40px; */
+    width: 40px;
     height: 40px;
+    object-fit: cover;
+    object-position: top;
 }
 .chat-sender-info {
     color: red;
@@ -484,4 +491,20 @@ textarea {
 }
 .comment-body {
     padding: 1rem;
+}
+
+/* ALL MEBERS */
+.user-card {
+    width: 10%;
+}
+.all-user-img {
+    width: 100%;
+}
+.btn-all-users {
+    width: 100px;
+    height: 30px;
+}
+.all-user-wrapper {
+    width: 70%;
+    margin: 3rem auto;
 }

@@ -13,6 +13,7 @@ import Chat from "./chat";
 import Wall from "./wall";
 
 import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import AllUsers from "./allUsers";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -152,6 +153,12 @@ export default class App extends React.Component {
                                     url={this.state.pictureUrl}
                                 />
                             )}
+                        />
+
+                        <Route
+                            exact
+                            path="/allusers"
+                            render={() => <AllUsers id={this.state.id} />}
                         />
                     </div>
                 </div>

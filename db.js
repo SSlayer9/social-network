@@ -143,3 +143,8 @@ module.exports.getMessages = () => {
         LIMIT 10`
     );
 };
+
+// GET ALL USERS WHO A MEMBER
+module.exports.getAllUsers = () => {
+    return db.query(`SELECT first, last, id, url FROM users `);
+};

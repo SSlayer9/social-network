@@ -13,19 +13,22 @@ export default function Header(props) {
                 <img id="header-logo" src="/assets/unicorn-logo.png" />
             </div>
             <div className="nav-bar">
-                <p onClick={props.toggleOnlineUser} className="link">
-                    {" "}
-                    Now Online
-                </p>
                 <p onClick={props.toggleWall} className="link">
                     {" "}
-                    Post Wall
+                    Wall
+                </p>
+                <p onClick={props.toggleOnlineUser} className="link">
+                    {" "}
+                    Online
                 </p>
                 <Link to="/friends" className="link">
-                    Show Friends
+                    Friends
                 </Link>
                 <Link to="/chat" className="link">
                     Chat
+                </Link>
+                <Link to="/allusers" className="link">
+                    Member
                 </Link>
                 <a href="/logout" className="link">
                     <p>Log Out</p>

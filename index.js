@@ -264,7 +264,7 @@ app.post("/send-friend-request/:id", (req, res) => {
 
 // CANCEL FRIEND REQUEST
 app.post("/cancel-friend-request/:id", (req, res) => {
-    console.log("Cancel Friend Running!");
+    // console.log("Cancel Friend Running!");
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
 
@@ -294,6 +294,19 @@ app.get("/friends-and-wannabes", (req, res) => {
         // console.log("Data from wholeFriendlist", data);
         res.json({
             friends: data.rows
+        });
+    });
+});
+
+// GET ALL USERS
+app.get("/allmembers", (req, res) => {
+    console.log("Req-body AllUsers:", req.body);
+    const userId = req.session.userId;
+    db.getAllUsers().then(data => {
+        console.log("Select All User: ", data.rows);
+
+        res.json({
+            allUsers: data.rows
         });
     });
 });
@@ -336,7 +349,7 @@ io.on("connection", function(socket) {
         return socket.disconnect(true);
     }
     // ---------- LOGS TO SEE WHATS GOING ON  ---------------------
-    console.log(`socket with the id ${socket.id} is now connected`);
+    // console.log(`socket with the id ${socket.id} is now connected`);
 
     // ------------------------------------------------------------
 
@@ -344,17 +357,17 @@ io.on("connection", function(socket) {
     const userId = socket.request.session.userId;
     // --------------------- LOGS TO SEE WHATS GOING ON -----------------------------
     onlineUsers[socket.id] = userId;
-    console.log("onlineUsers: ", onlineUsers);
-    console.log("onlineUsers[socket.id]: ", onlineUsers[socket.id]);
+    // console.log("onlineUsers: ", onlineUsers);
+    // console.log("onlineUsers[socket.id]: ", onlineUsers[socket.id]);
     // -------------------------------------------------------------------------------
     let userIds = Object.values(onlineUsers);
-    console.log("userIds: ", userIds);
+    // console.log("userIds: ", userIds);
 
     // -------------------------- / SOCKET EVENTS / ------------------------------------------
 
     db.getUsersByIds(userIds)
         .then(data => {
-            console.log("Data get usersByID: ", data.rows);
+            // console.log("Data get usersByID: ", data.rows);
             filteredRows = data.rows.filter(
                 singleObject => singleObject.id != userId
             );
@@ -389,7 +402,7 @@ io.on("connection", function(socket) {
 
     db.getMessages()
         .then(data => {
-            console.log("Whats in get Messages?:", data.rows);
+            // console.log("Whats in get Messages?:", data.rows);
             socket.emit("allMessages", {
                 messages: data.rows.reverse()
             });
@@ -400,10 +413,10 @@ io.on("connection", function(socket) {
 
     // receives a chatmessage from a single clinet
     socket.on("singleMessage", function(message) {
-        console.log("Happening in Server Chat", message);
+        // console.log("Happening in Server Chat", message);
         db.insertMessage(message.message, userId)
             .then(data => {
-                console.log("Whats in message from DB:", data);
+                // console.log("Whats in message from DB:", data);
                 data.rows[0].first = message.first;
                 data.rows[0].last = message.last;
                 data.rows[0].url = message.pic;
