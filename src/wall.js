@@ -15,11 +15,10 @@ export default class Wall extends React.Component {
     }
 
     getUsers() {
-        // We're using axios instead of Fetch
         axios
-            // The API we're requesting data from
+
             .get("https://randomuser.me/api/?results=7")
-            // Once we get a response, we'll map the API endpoints to our props
+
             .then(response =>
                 response.data.results.map(user => ({
                     name: `${user.name.first} ${user.name.last}`,
