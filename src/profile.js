@@ -17,7 +17,7 @@ export default function Profile(props) {
                 </div>
 
                 <div className="profile-wrapper">
-                    <p className="capitalze">
+                    <p className="capitalize">
                         {props.first} {props.last}
                     </p>
                 </div>
@@ -28,8 +28,7 @@ export default function Profile(props) {
                     toggleBioEditor={props.toggleBioEditor}
                 />
             </div>
-
-            <Wall />
+            {props.showWall && <Wall />}
         </div>
     );
 }

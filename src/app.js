@@ -20,6 +20,7 @@ export default class App extends React.Component {
         this.state = {
             uploaderIsVisible: false,
             showOnlineUser: false,
+            showWall: false,
             first: "",
             last: "",
             pictureUrl: "",
@@ -29,6 +30,7 @@ export default class App extends React.Component {
         this.showUploader = this.showUploader.bind(this);
         this.updateProfileUrl = this.updateProfileUrl.bind(this);
         this.toggleOnlineUser = this.toggleOnlineUser.bind(this);
+        this.toggleWall = this.toggleWall.bind(this);
         this.updateBio = this.updateBio.bind(this);
     }
 
@@ -70,6 +72,12 @@ export default class App extends React.Component {
         });
     }
 
+    toggleWall() {
+        this.setState({
+            showWall: !this.state.showWall
+        });
+    }
+
     updateProfileUrl(url) {
         this.setState({
             pictureUrl: url,
@@ -93,15 +101,13 @@ export default class App extends React.Component {
                         updateProfileUrl={this.updateProfileUrl}
                         first={this.state.first}
                         toggleOnlineUser={this.toggleOnlineUser}
+                        toggleWall={this.toggleWall}
                     />
                     <div>
-                        {/* <Switch> */}
                         <Route
                             exact
                             path="/"
-                            // component={Wall}
                             render={() => (
-                                // <div className="wrapper">
                                 <Profile
                                     showUploader={this.showUploader}
                                     pictureUrl={this.state.pictureUrl}
@@ -114,6 +120,7 @@ export default class App extends React.Component {
                                         this.state.bioEditorIsVisible
                                     }
                                     updateBio={this.updateBio}
+                                    showWall={this.state.showWall}
                                 />
                             )}
                         />
@@ -124,7 +131,7 @@ export default class App extends React.Component {
                             />
                         )}
                         {this.state.showOnlineUser && <OnlineUsers />}
-                        {/* <Route exact path="/friends" component={Friends} /> */}
+
                         <Route
                             exact
                             path="/friends"
@@ -134,10 +141,7 @@ export default class App extends React.Component {
                                 />
                             )}
                         />
-                        {/* // <Redirect path="*" to="/" /> */}
-                        {/* // </Switch> */}
-                        {/* //{" "} */}
-                        {/* <Route exact path="/online" component={OnlineUsers} /> */}
+
                         <Route
                             exact
                             path="/chat"
@@ -155,10 +159,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-// name = { this.state.firstName }
-// last = { this.state.lastName }
-// picture = { this.state.profilePic }
-// key = { props.match.url }
-// match = { props.match }
-// history = { props.history }

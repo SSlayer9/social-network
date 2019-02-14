@@ -1,6 +1,7 @@
 import React from "react";
 import Profilepic from "./profilepic";
 import OnlineUsers from "./onlineUsers";
+import Wall from "./wall";
 
 import { BrowserRouter, Link } from "react-router-dom";
 
@@ -16,6 +17,10 @@ export default function Header(props) {
                 <p onClick={props.toggleOnlineUser} className="link">
                     {" "}
                     Now Online
+                </p>
+                <p onClick={props.toggleWall} className="link">
+                    {" "}
+                    Post Wall
                 </p>
                 <Link to="/friends" className="link">
                     Show Friends

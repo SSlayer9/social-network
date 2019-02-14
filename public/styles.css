@@ -67,6 +67,7 @@ a {
 }
 .capitalize {
     text-transform: capitalize;
+    font-size: 1.4rem;
 }
 
 /* LANDING PAGE */
@@ -235,6 +236,7 @@ a {
 .profile-wrapper {
     max-width: 60%;
     padding-left: 1.25rem;
+    margin-bottom: 2rem;
 }
 .profile-welcome {
     font-size: 2.6vw;
@@ -286,6 +288,10 @@ a {
 .edit-btn {
     text-decoration: underline;
     cursor: pointer;
+    color: #12b912;
+}
+.edit-btn:hover {
+    color: #435466;
 }
 
 .bio-container {
@@ -341,8 +347,11 @@ textarea {
 
 /* ONLINE-USERS */
 .list-online-users {
-    position: relative;
-    top: -370px;
+    position: absolute;
+    top: 128px;
+    right: 0;
+    /* position: relative; */
+    /* top: -370px; */
     text-align: center;
     margin-right: 50px;
     width: 12%;
