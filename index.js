@@ -304,12 +304,17 @@ app.get("/allmembers", (req, res) => {
     const userId = req.session.userId;
     db.getAllUsers().then(data => {
         console.log("Select All User: ", data.rows);
-
+        filteredList = data.rows.filter(member => member.id != userId);
         res.json({
-            allUsers: data.rows
+            allUsers: filteredList
         });
     });
 });
+
+// // -----------------------------
+// filteredRows = data.rows.filter(
+//     singleObject => singleObject.id != userId
+// // -------------------------------
 
 //LOGOUT
 app.get("/logout", (req, res) => {
