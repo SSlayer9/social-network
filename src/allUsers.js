@@ -14,17 +14,12 @@ export default class AllUsers extends React.Component {
     async componentDidMount() {
         try {
             const response = await axios.get("/allmembers");
-            // this.setState({
-            //     allUsers: response.data
-            // });
-            // const users = response.dats;
-            console.log("Respone ALL USERS:", response);
-            console.log("All Users now??", users);
+
             const users = response.data.allUsers.map(user => ({
-                first: `${user.first}`,
-                last: `${user.last}`,
-                url: `${user.url}`,
-                id: `${user.id}`
+                first: user.first,
+                last: user.last,
+                url: user.url,
+                id: user.id
             }));
             this.setState({
                 allUsers: users
@@ -51,7 +46,7 @@ export default class AllUsers extends React.Component {
                     return (
                         <div key={id} className="wannabe-container">
                             <img
-                                src={user.url || "assets/default-img.png"}
+                                src={user.url || "/assets/default-img.png"}
                                 className="wannabe-img"
                             />
                             <p>

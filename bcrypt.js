@@ -4,6 +4,7 @@ const { promisify } = require("util");
 genSalt = promisify(genSalt);
 hash = promisify(hash);
 compare = promisify(compare);
+
 // HASH PASSWORD
 module.exports.hash = password => {
     return genSalt().then(salt => {

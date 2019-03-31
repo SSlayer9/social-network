@@ -11,7 +11,6 @@ class Chat extends React.Component {
     }
 
     handleChange(e) {
-        console.log("etarge: ", e.target.value);
         this.chatBox = e.target.value;
     }
 
@@ -22,6 +21,7 @@ class Chat extends React.Component {
             last: this.props.last,
             pic: this.props.url
         });
+        //clears the chatbox after submiting message
         document.querySelector(".chat-textarea").value = "";
     }
 
@@ -33,9 +33,7 @@ class Chat extends React.Component {
     }
 
     render() {
-        // console.log("Whats in /chat Props??:", props);
         const { messages } = this.props;
-        console.log("whats in message?:", messages);
 
         if (!messages) {
             return null;
@@ -95,18 +93,3 @@ const mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps)(Chat);
-
-{
-    /* <button
-    onClick={() =>
-        this.socket.emit("singleMessage", {
-            message: this.chatBox,
-            first: this.props.first,
-            last: this.props.last,
-            pic: this.props.url
-        })
-    }
->
-    Send
-</button> */
-}

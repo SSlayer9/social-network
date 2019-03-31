@@ -30,7 +30,6 @@ export async function endFriendship(friendId) {
 // SOCKET.IO ONLINER USERS
 
 export function allOnlineUsers(onlineUsers) {
-    console.log("AllOnlineUsers Action running: ", onlineUsers);
     return {
         type: "ONLINE_USERS",
         onlineUsers
@@ -59,7 +58,6 @@ export function showMessages(messages) {
 }
 
 export function showNewMessage(message) {
-    console.log("message in actions.js:", message);
     return {
         type: "SHOW_MESSAGE",
         message

@@ -44,24 +44,7 @@ export default function Header(props) {
                         />
                     </Link>
                 </div>
-                {/* <Link to="/">{props.first}</Link> */}
             </div>
         </div>
     );
-}
-
-{
-    /* <nav>
-    <ul>
-        <li>
-            <Link to="/friends">Friends</Link>
-        </li>
-        <li>
-            <a href="/logout">Log Out</a>
-        </li>
-        <li>
-            <Link to="/">Home</Link>
-        </li>
-    </ul>
-</nav>; */
 }

@@ -7,7 +7,6 @@ export default function ProfilePic(props) {
         url = "/assets/default-img.png";
     } else {
         url = props.pictureUrl;
-        // url = props.updateProfileUrl;
     }
     let name = props.first + "" + props.last;
 

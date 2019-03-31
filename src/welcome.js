@@ -3,7 +3,6 @@ import Registration from "./registration";
 import Login from "./login";
 import { HashRouter, Route, Link } from "react-router-dom";
 
-//this is a function component
 export default function Welcome() {
     return (
         <div>

@@ -21,6 +21,7 @@ class Friends extends React.Component {
             return null;
         }
         console.log("Wannabelist:", wannabes);
+        console.log("Wannabelist.length:", wannabes.length);
 
         const wannabeList = (
             <div>

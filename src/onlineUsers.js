@@ -17,7 +17,6 @@ class OnlineUsers extends React.Component {
         const listOnlineUsers = (
             <div className="list-online-users">
                 {onlineUsers.map(user => {
-                    let url = user.id;
                     return (
                         <div key={user.id} className="online-user-card">
                             <div className="card-image-container">

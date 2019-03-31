@@ -16,15 +16,15 @@ export default class Wall extends React.Component {
 
     getUsers() {
         axios
-
+            // to polllute my wall with content, that it looks like posts
             .get("https://randomuser.me/api/?results=7")
 
             .then(response =>
                 response.data.results.map(user => ({
                     name: `${user.name.first} ${user.name.last}`,
-                    username: `${user.login.username}`,
-                    email: `${user.email}`,
-                    image: `${user.picture.thumbnail}`
+                    username: user.login.username,
+                    email: user.email,
+                    image: user.picture.thumbnail
                 }))
             )
             .then(users => {

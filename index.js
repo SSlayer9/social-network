@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 //SOCKET
 const server = require("http").Server(app);
-// change origins if I want to put SN online
+// change origins if I want to put Social Network online
 const io = require("socket.io")(server, { origins: "localhost:8080" });
 
 const compression = require("compression");
@@ -70,7 +70,6 @@ if (process.env.NODE_ENV != "production") {
 
 //WELCOME REGISTER
 app.post("/welcome/register", function(req, res) {
-    console.log("Req.body post register", req.body);
     if (
         !req.body.first ||
         !req.body.last ||
@@ -92,13 +91,11 @@ app.post("/welcome/register", function(req, res) {
                 );
             })
             .then(dbData => {
-                console.log("User really has been added to Database");
-                console.log("Returnend dbData: ", dbData.rows[0]);
+                console.log("User has been added to Database");
                 req.session.userId = dbData.rows[0].id;
                 req.session.name = `${dbData.rows[0].first} ${
                     dbData.rows[0].last
                 }`;
-                console.log("req.session :", req.session);
                 res.json({
                     success: true
                 });
@@ -119,7 +116,7 @@ app.post("/welcome/login", function(req, res) {
             first: dbData.rows[0].first,
             last: dbData.rows[0].last
         };
-
+        // CHECK PASSWORD
         return bcrypt
             .comparePassword(req.body.password, dbData.rows[0].hashedpass)
             .then(bool => {
@@ -156,9 +153,9 @@ app.get("/user", (req, res) => {
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const fullUrl = config.s3Url + req.file.filename;
     const userId = req.session.userId;
+
     db.addProfilePic(fullUrl, userId)
         .then(({ rows }) => {
-            console.log("Rows in app post uploade: ", rows);
             res.json(rows[0]);
         })
         .catch(err => {
@@ -169,6 +166,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 // GET USER BIO
 app.get("/userbio", (req, res) => {
     const id = req.session.userId;
+
     db.getUserBio(id)
         .then(dbData => {
             const savedBio = dbData.rows[0].bio;
@@ -198,14 +196,15 @@ app.post("/userbio", (req, res) => {
 app.get("/user/:id/info", (req, res) => {
     const userId = req.session.userId;
     const targetId = req.params.id;
+
     if (userId == targetId) {
         return res.json({
             redirectTo: "/"
         });
     }
     db.getOtherUserInfo(targetId)
-        .then(data => {
-            const OtherUserInfo = data.rows[0];
+        .then(dbData => {
+            const OtherUserInfo = dbData.rows[0];
             res.json(OtherUserInfo);
         })
         .catch(err => {
@@ -223,10 +222,10 @@ app.get("/get-initial-status/:id", (req, res) => {
 
     db.getFriendshipStatus(loggedInUserId, otherUserId)
         .then(dbData => {
-            // No Request send yet
+            // No Request sent yet
             if (!dbData.rows[0]) {
                 res.json({
-                    buttonText: "Make Friend Request"
+                    buttonText: "Add"
                 });
                 return;
             }
@@ -240,11 +239,11 @@ app.get("/get-initial-status/:id", (req, res) => {
             if (dbData.rows[0].accepted == false) {
                 if (loggedInUserId == dbData.rows[0].sender_id) {
                     res.json({
-                        buttonText: "Cancel Friend Request"
+                        buttonText: "Cancel"
                     });
                 } else if (loggedInUserId == dbData.rows[0].receiver_id) {
                     res.json({
-                        buttonText: "Accept Friend Request"
+                        buttonText: "Accept"
                     });
                 }
             }
@@ -264,7 +263,6 @@ app.post("/send-friend-request/:id", (req, res) => {
 
 // CANCEL FRIEND REQUEST
 app.post("/cancel-friend-request/:id", (req, res) => {
-    // console.log("Cancel Friend Running!");
     const loggedInUserId = req.session.userId;
     const otherUserId = req.params.id;
 
@@ -287,34 +285,28 @@ app.post("/accept-friend-request/:id", (req, res) => {
     });
 });
 
-// SHOW FRIENDS AND PENDING FRIENDS REQUESTS
+// SHOW FRIENDS AND PENDING(Wannabes) FRIENDS REQUESTS
 app.get("/friends-and-wannabes", (req, res) => {
     const userId = req.session.userId;
-    db.getFriendsAndWannabes(userId).then(data => {
-        // console.log("Data from wholeFriendlist", data);
+
+    db.getFriendsAndWannabes(userId).then(dbData => {
         res.json({
-            friends: data.rows
+            friends: dbData.rows
         });
     });
 });
 
 // GET ALL USERS
 app.get("/allmembers", (req, res) => {
-    console.log("Req-body AllUsers:", req.body);
     const userId = req.session.userId;
-    db.getAllUsers().then(data => {
-        console.log("Select All User: ", data.rows);
-        filteredList = data.rows.filter(member => member.id != userId);
+
+    db.getAllUsers().then(dbData => {
+        filteredList = dbData.rows.filter(member => member.id != userId);
         res.json({
             allUsers: filteredList
         });
     });
 });
-
-// // -----------------------------
-// filteredRows = data.rows.filter(
-//     singleObject => singleObject.id != userId
-// // -------------------------------
 
 //LOGOUT
 app.get("/logout", (req, res) => {
@@ -322,7 +314,7 @@ app.get("/logout", (req, res) => {
     res.redirect("/welcome#/login");
 });
 
-// 2 below should come last
+// 2 BELOW SHOULD COME LAST
 
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
@@ -366,17 +358,15 @@ io.on("connection", function(socket) {
     // console.log("onlineUsers[socket.id]: ", onlineUsers[socket.id]);
     // -------------------------------------------------------------------------------
     let userIds = Object.values(onlineUsers);
-    // console.log("userIds: ", userIds);
 
     // -------------------------- / SOCKET EVENTS / ------------------------------------------
 
     db.getUsersByIds(userIds)
-        .then(data => {
-            // console.log("Data get usersByID: ", data.rows);
-            filteredRows = data.rows.filter(
+        .then(dbData => {
+            filteredRows = dbData.rows.filter(
                 singleObject => singleObject.id != userId
             );
-            // socket.emit("onlineUsers", data.rows);
+
             socket.emit("onlineUsers", filteredRows);
         })
         .catch(err => {
@@ -386,8 +376,8 @@ io.on("connection", function(socket) {
     //USER JOINS
     if (userIds.filter(id => id == userId).length == 1) {
         db.getJoinedUser(userId)
-            .then(data => {
-                socket.broadcast.emit("userJoined", data.rows[0]);
+            .then(dbData => {
+                socket.broadcast.emit("userJoined", dbData.rows[0]);
             })
             .catch(err => {
                 console.log(err.message);
@@ -404,30 +394,26 @@ io.on("connection", function(socket) {
     });
 
     // USER CHAT MESSAGES
-
     db.getMessages()
-        .then(data => {
-            // console.log("Whats in get Messages?:", data.rows);
+        .then(dbData => {
             socket.emit("allMessages", {
-                messages: data.rows.reverse()
+                messages: dbData.rows.reverse()
             });
         })
         .catch(err => {
             console.log(err.message);
         });
 
-    // receives a chatmessage from a single clinet
+    // RECEIVES A CHAT MESSAGE FROM A SINGLE CIENT
     socket.on("singleMessage", function(message) {
-        // console.log("Happening in Server Chat", message);
         db.insertMessage(message.message, userId)
-            .then(data => {
-                // console.log("Whats in message from DB:", data);
-                data.rows[0].first = message.first;
-                data.rows[0].last = message.last;
-                data.rows[0].url = message.pic;
-                console.log("Added ALL to DataROws: ", data.rows[0]);
+            .then(dbData => {
+                dbData.rows[0].first = message.first;
+                dbData.rows[0].last = message.last;
+                dbData.rows[0].url = message.pic;
+                console.log("Added ALL to DataROws: ", dbData.rows[0]);
                 io.emit("chatMessage", {
-                    message: data.rows[0]
+                    message: dbData.rows[0]
                 });
             })
             .catch(err => {

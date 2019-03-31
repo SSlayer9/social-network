@@ -2,7 +2,6 @@ import React from "react";
 import ProfilePic from "./profilepic";
 import BioEditor from "./bioeditor";
 import Wall from "./wall";
-// import FriendButton from "./Friendbutton";
 
 export default function Profile(props) {
     return (

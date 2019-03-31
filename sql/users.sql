@@ -12,7 +12,3 @@ CREATE TABLE users
     bio VARCHAR (255)
 );
 
--- //This lets us add a column without the use of dropping and create a new table
--- ALTER TABLE users
--- ADD COLUMN bio VARCHAR
--- (300);
