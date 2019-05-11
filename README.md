@@ -4,6 +4,10 @@
 <p>This was my favorite project throughout the course. In this Social NetWork users can register, login and create their own profile. They can upload/change a profile pic and write their bio. Changes are saved and rendered immediately.</p>
 <p>The goal of this project was to create a plattform where people can connect like on Facebook</p>
 
+<h2>Demo</h2>
+
+![Social Network Demo](https://user-images.githubusercontent.com/39802330/57573691-fe471d80-742b-11e9-9e82-2d24c3ab0a95.gif)
+
 <h2>Features</h2>
 <ul>
     <li>Register / Login / Create a profile</li>
@@ -22,5 +26,6 @@
 <li>Node.js</li>
 <li>Socket.io</li>
 <li>PostgreSQL</li>
+<li>CSS3</li>
 
 </ul>
