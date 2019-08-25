@@ -6,7 +6,8 @@
 body {
     display: flex;
     align-items: center;
-    color: #9c79cc;
+
+    color: #572a94;
     margin: 0;
 }
 main {
@@ -80,6 +81,12 @@ a {
     }
 }
 
+.background {
+    background: url(./assets/unicorn-sweets-hero.JPG);
+    width: 100vw;
+    height: auto;
+}
+
 .landing-imgage-container {
     width: 200px;
     height: 200px;
@@ -91,8 +98,7 @@ a {
 .logo-image {
     animation: wale-logo-float infinite 2s alternate;
     padding-top: 2rem;
-
-    width: 63%;
+    width: 55%;
 }
 .svg-logo {
     fill: rgb(211, 62, 186);

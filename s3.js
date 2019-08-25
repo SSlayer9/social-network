@@ -8,10 +8,16 @@ if (process.env.NODE_ENV == "production") {
 } else {
     secrets = require("./secrets"); // secrets.json is in .gitignore
 }
+// const client = knox.createClient({
+//     key: secrets.AWS_ACCESS_KEY_ID,
+//     secret: secrets.AWS_SECRET_ACCESS_KEY,
+//     bucket: secrets.S3_BUCKET_NAME
+// });
+
 const client = knox.createClient({
-    key: secrets.AWS_ACCESS_KEY_ID,
-    secret: secrets.AWS_SECRET_ACCESS_KEY,
-    bucket: secrets.S3_BUCKET_NAME
+    key: secrets.AWS_KEY,
+    secret: secrets.AWS_SECRET,
+    bucket: "spicedling"
 });
 
 module.exports.upload = (req, res, next) => {

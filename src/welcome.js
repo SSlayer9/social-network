@@ -5,7 +5,7 @@ import { HashRouter, Route, Link } from "react-router-dom";
 
 export default function Welcome() {
     return (
-        <div>
+        <div className="background">
             <HashRouter>
                 <div className="landing-flexcontainer">
                     <div>
@@ -14,6 +14,7 @@ export default function Welcome() {
                             src="/assets/unicornsss.png"
                             alt="unicorn logo"
                         />
+
                         <div className="landing-image-container">
                             <img
                                 className="logo-image"
