@@ -333,7 +333,7 @@ app.get("*", function(req, res) {
 });
 
 //SERVER (with socket.io)
-server.listen(8080, function() {
+server.listen(process.env.PORT || 8080, function() {
     ca.rainbow("Yo, I'm listening on Port 8080!");
 });
 // --------------------------------/ socket.io CODE / --------------------------------
