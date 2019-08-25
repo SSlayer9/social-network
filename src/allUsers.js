@@ -30,7 +30,6 @@ export default class AllUsers extends React.Component {
     }
 
     render() {
-        console.log("STATE Allusers: ", this.state);
         const { allUsers } = this.state;
 
         return (
@@ -53,7 +52,10 @@ export default class AllUsers extends React.Component {
                                 {first} {last}
                             </p>
                             <div className="btn-all-users">
-                                <FriendButton otherUserId={id} />
+                                <FriendButton
+                                    otherUserId={id}
+                                    className="btn-members"
+                                />
                             </div>
                         </div>
                     );

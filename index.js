@@ -91,7 +91,7 @@ app.post("/welcome/register", function(req, res) {
                 );
             })
             .then(dbData => {
-                console.log("User has been added to Database");
+                // console.log("User has been added to Database");
                 req.session.userId = dbData.rows[0].id;
                 req.session.name = `${dbData.rows[0].first} ${
                     dbData.rows[0].last
@@ -345,17 +345,12 @@ io.on("connection", function(socket) {
     if (!socket.request.session || !socket.request.session.userId) {
         return socket.disconnect(true);
     }
-    // ---------- LOGS TO SEE WHATS GOING ON  ---------------------
-    // console.log(`socket with the id ${socket.id} is now connected`);
-
-    // ------------------------------------------------------------
 
     const socketId = socket.id;
     const userId = socket.request.session.userId;
-    // --------------------- LOGS TO SEE WHATS GOING ON -----------------------------
+
     onlineUsers[socket.id] = userId;
-    // console.log("onlineUsers: ", onlineUsers);
-    // console.log("onlineUsers[socket.id]: ", onlineUsers[socket.id]);
+
     // -------------------------------------------------------------------------------
     let userIds = Object.values(onlineUsers);
 
@@ -411,7 +406,7 @@ io.on("connection", function(socket) {
                 dbData.rows[0].first = message.first;
                 dbData.rows[0].last = message.last;
                 dbData.rows[0].url = message.pic;
-                console.log("Added ALL to DataROws: ", dbData.rows[0]);
+                // console.log("Added ALL to DataROws: ", dbData.rows[0]);
                 io.emit("chatMessage", {
                     message: dbData.rows[0]
                 });

@@ -38,7 +38,7 @@ export default class Wall extends React.Component {
     }
 
     render() {
-        console.log("STATE USERS:", this.state);
+        // console.log("STATE USERS:", this.state);
         const { users } = this.state;
         return (
             <div className="feeds-container">

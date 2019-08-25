@@ -41,7 +41,7 @@ class OnlineUsers extends React.Component {
                 })}
             </div>
         );
-        console.log("listOnlineUser: ", listOnlineUsers);
+        // console.log("listOnlineUser: ", listOnlineUsers);
         return (
             <div>
                 <div>
@@ -56,7 +56,7 @@ class OnlineUsers extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log("state in onlineusers-comp:", state);
+    // console.log("state in onlineusers-comp:", state);
     return {
         onlineUsers: state.onlineUsers
     };

@@ -36,13 +36,18 @@ export default class Registration extends React.Component {
     }
     render() {
         return (
-            <div className="registration-form">
+            <div className="registration-form" autoComplete="off">
                 {this.state.error && (
                     <div className="error">Oops! Something went wrong!</div>
                 )}
 
                 <label htmlFor="first">First name</label>
-                <input name="first" id="first" onChange={this.handleChange} />
+                <input
+                    name="first"
+                    id="first"
+                    onChange={this.handleChange}
+                    autocomplete="off"
+                />
 
                 <label htmlFor="last">Last Name</label>
                 <input name="last" id="last" onChange={this.handleChange} />
@@ -52,6 +57,7 @@ export default class Registration extends React.Component {
 
                 <label htmlFor="password">Password</label>
                 <input
+                    type="password"
                     name="password"
                     id="password"
                     onChange={this.handleChange}
