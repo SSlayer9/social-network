@@ -52,7 +52,7 @@ export default class FriendButton extends React.Component {
     }
 
     render() {
-        console.log("otherUserId: ", this.props.otherUserId);
+        // console.log("otherUserId: ", this.props.otherUserId);
         return (
             <button onClick={this.updateFriendship}>
                 {this.state.buttonText}

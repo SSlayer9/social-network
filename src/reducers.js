@@ -4,7 +4,7 @@ export default function(state = {}, action) {
     }
 
     if (action.type == "ACCEPT_FRIENDSHIP") {
-        console.log("accepted friend:", action.acceptedFriend);
+        // console.log("accepted friend:", action.acceptedFriend);
         state = {
             ...state,
             friendslist: state.friendslist.map(friend => {
@@ -18,7 +18,7 @@ export default function(state = {}, action) {
     }
 
     if (action.type == "END_FRIENDSHIP") {
-        console.log("endFrindship", action.deletedFriend);
+        // console.log("endFrindship", action.deletedFriend);
         state = {
             ...state,
             friendslist: state.friendslist.filter(friend => {

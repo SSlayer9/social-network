@@ -78,7 +78,9 @@ class Chat extends React.Component {
                             className="chat-textarea"
                         />
                     </div>
-                    <button onClick={this.submit}>Send</button>
+                    <button className="chat-btn" onClick={this.submit}>
+                        Send
+                    </button>
                 </div>
             </div>
         );
@@ -86,7 +88,7 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log("State in Chat:", state);
+    // console.log("State in Chat:", state);
     return {
         messages: state.messages
     };

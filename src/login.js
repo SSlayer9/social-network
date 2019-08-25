@@ -19,7 +19,7 @@ export default class Login extends React.Component {
                 email: this.email,
                 password: this.password
             });
-            console.log("Response in Login: ", response);
+            // console.log("Response in Login: ", response);
             if (response.data.success) {
                 location.replace("/");
             } else {
@@ -46,6 +46,7 @@ export default class Login extends React.Component {
 
                 <label htmlFor="password">Password</label>
                 <input
+                    type="password"
                     name="password"
                     id="password"
                     onChange={this.handleChange}
