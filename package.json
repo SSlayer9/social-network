@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "node build.js",
-        "start": " node bundle-server.js node index.js",
+        "start": "  node index.js",
         "test": "jest"
     },
     "engines": {
