@@ -14,12 +14,6 @@ const client = knox.createClient({
     bucket: secrets.S3_BUCKET_NAME
 });
 
-// const client = knox.createClient({
-//     key: secrets.AWS_KEY,
-//     secret: secrets.AWS_SECRET,
-//     bucket: "spicedling"
-// });
-
 module.exports.upload = (req, res, next) => {
     if (!req.file) {
         console.log("multer failed");
